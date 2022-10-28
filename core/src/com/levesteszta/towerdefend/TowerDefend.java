@@ -4,11 +4,9 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-import com.levesteszta.towerdefend.helper.TileType;
 
 public class TowerDefend extends ApplicationAdapter {
 	float WINDOW_WIDTH = 1000f;
@@ -45,7 +43,7 @@ public class TowerDefend extends ApplicationAdapter {
 		}
 		render.end();
 		batch.begin();
-			//new Sprite(new Texture("proba.jpg"),32,32).draw(batch);
+			batch.draw(new Texture("lol.png"),0,0,32,32);
 			room.draw(batch);
 		batch.end();
 	}

@@ -31,7 +31,7 @@ public class Map {
             endIndex = (int)(rand.nextInt(((heightRange-2) - 1) + 1) + 1); 
         System.out.println("Start: "+map2D.length+" : "+startIndex+" , End: "+map2D[0].length+" : "+endIndex);
         
-        int w = widthRange;                        //szélesség hátra                       --(Hányszor mehetek jobbra)
+        int w = widthRange;                         //szélesség hátra                       --(Hányszor mehetek jobbra)
         int h = endIndex - startIndex;              //magasság (+ lefele, - felfele) hátra  --(Hányszor mehetek fel/le)
         int minPath = (int)(w + Math.abs(h))-1;     //Mennyi lesz a minimális út -> adott út adott számú jobbra és fel/le daraból áll, ennek elosztása mindegy ilyenkor
 

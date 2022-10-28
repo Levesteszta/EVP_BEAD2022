@@ -12,8 +12,9 @@ public class DesktopLauncher {
 		config.setForegroundFPS(60);
 		config.setTitle("Tower Defend");
 
-		config.setWindowSizeLimits(1000, 720, 1000, 720);
-		config.setWindowedMode(1000, 720);
+		// x: 32*31 , y = 22*32
+		config.setWindowSizeLimits(992, 704, 992, 704);
+		config.setWindowedMode(992, 704);
 		
 		new Lwjgl3Application(new TowerDefend(), config);
 	}
