@@ -27,7 +27,7 @@ public class TileGrid{
                     case 0:
 					    map_grid2[i][j] = new Tile((start_X)+j*32,(start_Y)+i*32,32,TileType.Fold);break;
                     case 1:
-					    map_grid2[i][j] = new Tile((start_X)+j*32,(start_Y)+i*32, 32,TileType.Ut);
+					    map_grid2[i][j] = new Tile((start_X)+j*32,(start_Y)+i*32, 32,TileType.Ut);break;
 
                 }
             };
@@ -40,6 +40,14 @@ public class TileGrid{
 				map_grid2[i][j].draw(batch);
 			}
 		};
+    }
+
+    public int getStartIndex(){
+        for(int i = 0; i < map_grid2[0].length;i++){
+            if(map_grid2[i][0].getTile() == TileType.Ut)
+                return i;
+        }
+        return 0;
     }
 
     public Tile getTileDataes(float xCord, float yCord) {

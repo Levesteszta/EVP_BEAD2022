@@ -2,8 +2,8 @@ package com.levesteszta.towerdefend.helper;
 
 public enum TileType {
     
-    Fold("proba", false),
-    Ut("proba2",false);
+    Fold("proba.jpg", false),
+    Ut("proba2.jpg",false);
     
     public String TextureName;
     public boolean isClickable;

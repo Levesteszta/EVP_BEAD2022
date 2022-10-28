@@ -3,25 +3,28 @@ package com.levesteszta.towerdefend;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
 public class TowerDefend extends ApplicationAdapter {
-	float WINDOW_WIDTH = 1000f;
-	float WINDOW_HEIGHT = 720f;
+	float WINDOW_WIDTH = 997f;
+	float WINDOW_HEIGHT = 706f;
+	int TILE_SIZE = 32;
 
 	SpriteBatch batch;
 	ShapeRenderer render;
 	TileGrid room; 
+	Enemy enemies;
 
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		render = new ShapeRenderer();
-		room = new TileGrid(32*2, 32*6, WINDOW_WIDTH-(32*2), WINDOW_HEIGHT-(32*1));
+		room = new TileGrid(TILE_SIZE*2, TILE_SIZE*6, WINDOW_WIDTH-(TILE_SIZE*2), WINDOW_HEIGHT-(TILE_SIZE*1));
 		room.generate();
+
+		enemies = new Basic(TILE_SIZE*2, TILE_SIZE*(6+(room.getStartIndex())));
 	}	
 	
 	@Override
@@ -32,6 +35,7 @@ public class TowerDefend extends ApplicationAdapter {
 	@Override
 	public void render () {
 		//render
+
 		Gdx.gl.glClearColor(0f, 0f, 0f, 0f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		render.begin(ShapeType.Line);
@@ -43,8 +47,8 @@ public class TowerDefend extends ApplicationAdapter {
 		}
 		render.end();
 		batch.begin();
-			batch.draw(new Texture("lol.png"),0,0,32,32);
 			room.draw(batch);
+			enemies.draw(batch);
 		batch.end();
 	}
 }

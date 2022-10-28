@@ -14,7 +14,7 @@ public class Tile {
         this.y = y;
         this.size = size;
         this.tile = tile;
-        this.texture = new Texture(tile.TextureName+".jpg");
+        this.texture = new Texture(tile.TextureName);
     }
 
     public void draw(SpriteBatch sprite){

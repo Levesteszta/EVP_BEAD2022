@@ -5,11 +5,11 @@ import java.util.*;
 public class Map {
     int[][] map2D = null;
     boolean wasSetup = false;
-    int widthRange = -1;
-    int heightRange = -1;
+    int widthRange = -1, heightRange = -1;
+    int startIndex = -1, endIndex = -1;
     Random rand = new Random();
 
-    void setup(int get_YRange, int get_XRange){
+    private void setup(int get_YRange, int get_XRange){
         try{
             widthRange = (int)Math.floor(get_XRange/32.0);      //Hány 32x32 es kockát tudunk az X (szélesség) számegyenesre rakni 
             heightRange = (int)Math.floor(get_YRange/32.0);     //Hány 32x32 es kockát tudunk az Y (magasság) száemgyenesre rakni 
@@ -21,16 +21,20 @@ public class Map {
             wasSetup = true;
         }catch(Exception e){wasSetup=false; return;}
     }
+
+    private void GenerateIndexes(){
+        startIndex  = (int)(rand.nextInt(((heightRange-2) - 1) + 1) + 1);   //Hanyas sorindexből indul -> rand.nextInt((max - min) + 1) + min;
+        endIndex    = (int)(rand.nextInt(((heightRange-2) - 1) + 1) + 1);   //Hanyas sorindexre végződik
+        while(this.startIndex == this.endIndex || this.startIndex == this.endIndex-1 || this.startIndex == this.endIndex+1)
+            endIndex = (int)(rand.nextInt(((heightRange-2) - 1) + 1) + 1); 
+    };
+
     public int[][] generate(int get_YRange, int get_XRange){
         setup(get_YRange, get_XRange);
         if(!wasSetup)
             return null;
-        int startIndex  = (int)(rand.nextInt(((heightRange-2) - 1) + 1) + 1);   //Hanyas sorindexből indul -> rand.nextInt((max - min) + 1) + min;
-        int endIndex    = (int)(rand.nextInt(((heightRange-2) - 1) + 1) + 1);   //Hanyas sorindexre végződik
-        while(startIndex == endIndex || startIndex == endIndex-1 || startIndex == endIndex+1)
-            endIndex = (int)(rand.nextInt(((heightRange-2) - 1) + 1) + 1); 
+        GenerateIndexes();
         System.out.println("Start: "+map2D.length+" : "+startIndex+" , End: "+map2D[0].length+" : "+endIndex);
-        
         int w = widthRange;                         //szélesség hátra                       --(Hányszor mehetek jobbra)
         int h = endIndex - startIndex;              //magasság (+ lefele, - felfele) hátra  --(Hányszor mehetek fel/le)
         int minPath = (int)(w + Math.abs(h))-1;     //Mennyi lesz a minimális út -> adott út adott számú jobbra és fel/le daraból áll, ennek elosztása mindegy ilyenkor
@@ -98,11 +102,15 @@ public class Map {
         return map2D;
     }
 
-    int[][] getMap(){
+    public int[][] getMap(){
         return map2D;
     }
 
-    void writeOut(){
+    public int getStart(){
+        return startIndex;
+    }
+
+    protected void writeOut(){
         for(int[] x : map2D){
             for(int y : x)
                 System.out.print(y+" ");
