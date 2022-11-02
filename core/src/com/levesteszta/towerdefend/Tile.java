@@ -1,8 +1,8 @@
 package com.levesteszta.towerdefend;
 
+import static com.levesteszta.towerdefend.helpers.Artist.*;
+import com.levesteszta.towerdefend.helpers.TileType;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.levesteszta.towerdefend.helper.TileType;
 
 public class Tile {
     private float x, y, size;
@@ -14,11 +14,11 @@ public class Tile {
         this.y = y;
         this.size = size;
         this.tile = tile;
-        this.texture = new Texture(tile.TextureName);
+        this.texture = tile.Texture;
     }
 
-    public void draw(SpriteBatch sprite){
-        sprite.draw(this.texture, x, y, size, size);
+    public void draw(){
+        DrawTex(this.texture, x, y, size);
     };
 
     // Tile
@@ -27,5 +27,18 @@ public class Tile {
     }
     public void setTile(TileType tile) {
         this.tile = tile;
+    }
+
+    public float getX() {
+        return x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
+    @Override
+    public String toString() {
+        return "x: "+x+", y: "+y+" , textureName: "+texture.getTextureData();    
     }
 }

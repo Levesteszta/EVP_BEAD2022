@@ -1,18 +1,15 @@
 package com.levesteszta.towerdefend;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.levesteszta.towerdefend.helper.TileType;
+import com.levesteszta.towerdefend.helpers.TileType;
 
 public class TileGrid{
-    private float start_X, start_Y, end_X, end_Y;
+    private float start_X, start_Y;
     private float WINDOW_HEIGHT, WINDOW_WIDTH;
     private Tile[][] map_grid2;
     private int[][] map;
     public TileGrid(float start_X, float start_Y, float end_X, float end_Y){
         this.start_X = start_X;
         this.start_Y = start_Y;
-        this.end_X = end_X;
-        this.end_Y = end_Y;
 
         this.WINDOW_WIDTH = end_X - start_X;    
         this.WINDOW_HEIGHT = end_Y - start_Y;
@@ -34,10 +31,10 @@ public class TileGrid{
 		};
     }
 
-    public void draw(SpriteBatch batch){
+    public void draw(){
         for(int i = 0; i < map_grid2.length; i++){
 			for(int j = 0; j < map_grid2[i].length; j++){
-				map_grid2[i][j].draw(batch);
+				map_grid2[i][j].draw();
 			}
 		};
     }
@@ -50,8 +47,11 @@ public class TileGrid{
         return 0;
     }
 
-    public Tile getTileDataes(float xCord, float yCord) {
+    public Tile getTileDataesByCoord(float xCord, float yCord) {
         return map_grid2[(int)(xCord/32)][(int)(yCord/32)];
+    }
+    public Tile getTileDataesByInd(int oszlop, int sor) {
+        return map_grid2[(int)oszlop][sor];
     }
 
     public Tile setTileDataes(float xCord, float yCord,TileType type) {
