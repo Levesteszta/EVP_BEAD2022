@@ -3,6 +3,7 @@ package com.levesteszta.towerdefend.helpers;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.GL20;
 
 public class Artist {
@@ -15,6 +16,10 @@ public class Artist {
         batch.begin();
         batch.draw(texture, x, y, size, size);
         batch.end();
+    }
+
+    public static TextureRegion[][] getTexturesFromArea(String name){
+        return new TextureRegion(new Texture(name)).split(16, 16);
     }
 
     public static Texture GetInternalTexture(String name){ 

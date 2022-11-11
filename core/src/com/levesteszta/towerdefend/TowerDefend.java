@@ -5,6 +5,7 @@ import static com.levesteszta.towerdefend.helpers.Clock.*;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -57,7 +58,9 @@ public class TowerDefend extends ApplicationAdapter {
 		
 		//enemy.update(getTimer());
 		//enemy.draw();
-		DrawTex(new Texture("proba.jpg"), 0, 0, TILE_SIZE);
+		Sprite reg = new Sprite(new Texture("terrain.png")); 
+		DrawTex(reg.getTexture(),0,0,TILE_SIZE);
+		//DrawTex(getTexturesFromArea("terrain.png")[0][0].getTexture(), 0, 0, TILE_SIZE);
 		wav.update(getTimer());
 	}
 }
