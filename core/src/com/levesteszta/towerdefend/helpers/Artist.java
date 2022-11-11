@@ -9,7 +9,6 @@ public class Artist {
     public static final float WINDOW_WIDTH = 997f, WINDOW_HEIGHT = 706f;
     public static int TILE_SIZE = 32;
     static SpriteBatch batch = new SpriteBatch(1);
-
     public static void DrawTex(Texture texture, float x, float y, float size){
         texture.bind(0);
         Gdx.gl.glActiveTexture(GL20.GL_TEXTURE0);

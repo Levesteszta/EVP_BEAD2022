@@ -5,7 +5,7 @@ import static com.levesteszta.towerdefend.helpers.Artist.*;
 
 // Ős
 class Enemy {
-    protected static float SPEED = 1.0f, MULT = 0.3f;        //Jelenleg a mozgás sebessége adott mindenkinél, egy multiplifáció hogy ne szaladjon ki , inkább csak sétáljon nyugodtan
+    protected static float SPEED = 1.0f, MULT = 0.2f;        //Jelenleg a mozgás sebessége adott mindenkinél, egy multiplifáció hogy ne szaladjon ki , inkább csak sétáljon nyugodtan
     protected float x, y; 
     protected Tile startTile;
     protected int size, health, damage;   //Pozicio, méret,Életerő,dmg;                      
@@ -38,6 +38,7 @@ class Enemy {
 
     protected void draw(){
         DrawTex(this.texture, x, y, TILE_SIZE);
+        System.out.println("-->Változás poziciója Korodinátákban: "+x+" - "+y+"\r\n");
     };
 
     protected Tile getStartTile() {
@@ -49,5 +50,6 @@ class Enemy {
 class Basic extends Enemy{
     public Basic(Tile spawnTile){
         super(spawnTile,32,100,10, GetTexture("ellen.png"));
+        System.out.println(" Poziciója Korodinátákban: "+x+" - "+y+";\r\n Életereje: "+health+" , Sebzése: "+damage);
     }
 }
