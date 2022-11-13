@@ -34,7 +34,7 @@ public class Wave {
 
     public void spawn(){
         if(db < maxdb){
-            enemies.add(new Basic(enemyType.getStartTile()));
+            enemies.add(new Basic(enemyType.getTileGrid()));
             db++;
         }
     }

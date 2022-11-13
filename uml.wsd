@@ -1,0 +1,94 @@
+@startuml
+scale 2
+enum TileType {
+    +Texture : Texture;
+    +isClickable : boolean
+    +Fold()
+    +Ut()
+}
++class Tile {
+    -x, y, size : float
+    -tile : TileType
+    -Texture texture
+    +Tile(float x, float y, float size, TileType tile)
+    +draw() : void
+    +getTile() : TileType 
+    +setTile(TileType tile) : void
+    +getX() , getY() : float
+    +toString() : String
+}
+class TowerDefend {
+	+SPEED = 1f : static final float 
+	-spawnPoint : int
+	-render : ShapeRenderer
+	-room : TileGrid
+	-enemy : Enemy
+	+create()	
+	+dispose()
+	+render()
+}
+class Enemy {
+    #SPEED = 1.0f, MULT = 0.3f  : static float
+    #x, y: float
+    #startTile : Tile
+    #size, health, damage : int                     
+    #texture : Texture
+    #first = true : boolean
+    Enemy(Tile spawnTile, int size ,int health, int damage, Texture texture)
+    
+    #remove()
+    #setX(float deltaX)
+    #update(float deltaX)
+    #draw()
+    #getStartTile() : Tile
+}
+class Basic
+class Wave {
+    -db : int
+    -spawnTime : float
+    -lastSpawnTime : float
+    -enemyType : Enemy
+    -enemies : ArrayList<Enemy>
+
+    +Wave(int db, float spawnTime, Enemy enemyType)
+    +update(float deltaTime)
+    +spawn()
+}
+
+class Map {
+    +map2D = null : int[][]
+    +wasSetup = false : boolean
+    +widthRange = -1, heightRange = -1 : int
+    +startIndex = -1, endIndex = -1 : int
+    +rand : Random 
+
+    -void setup(int get_YRange, int get_XRange)
+    -void GenerateIndexes()
+    +int[][] generate(int get_YRange, int get_XRange)
+    +int[][] getMap()
+    +int getStart()
+    #void writeOut()
+}
+
+class TileGrid{
+    -start_X, start_Y : float
+    -WINDOW_HEIGHT, WINDOW_WIDTH : float
+    -map_grid2 : Tile[][]
+    -map : int[][]
+    +TileGrid(float start_X, float start_Y, float end_X, float end_Y)
+    +generate() : void
+    +draw() : void
+    +getStartIndex() : void 
+    +getTileDataesByCoord(float xCord, float yCord) : Tile
+    +getTileDataesByInd(int oszlop, int sor) : Tile
+    +setTileDataes(float xCord, float yCord,TileType type): Tile
+}
+
+TowerDefend "1" -- "N" Wave
+TowerDefend -- TileGrid 
+TileGrid o-- Map
+TileGrid o-- Tile
+Tile -- TileType
+Wave "1" *-- "N" Enemy
+Enemy <|-- Basic
+@enduml

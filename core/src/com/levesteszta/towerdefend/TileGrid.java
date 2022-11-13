@@ -48,10 +48,10 @@ public class TileGrid{
     }
 
     public Tile getTileDataesByCoord(float xCord, float yCord) {
-        return map_grid2[(int)(xCord/32)][(int)(yCord/32)];
+        return map_grid2[(int)((xCord/32))][(int)((yCord/32))];
     }
     public Tile getTileDataesByInd(int oszlop, int sor) {
-        return map_grid2[(int)oszlop][sor];
+        return map_grid2[oszlop][sor];
     }
 
     public Tile setTileDataes(float xCord, float yCord,TileType type) {

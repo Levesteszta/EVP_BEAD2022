@@ -36,6 +36,13 @@ public class Tile {
     public float getY() {
         return y;
     }
+    public int getXInd() {
+        return (int) x/TILE_SIZE-2;
+    }
+
+    public int getYInd() {
+        return (int) y/TILE_SIZE-6;
+    }
 
     @Override
     public String toString() {

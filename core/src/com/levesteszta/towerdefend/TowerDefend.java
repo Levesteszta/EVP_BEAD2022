@@ -29,7 +29,7 @@ public class TowerDefend extends ApplicationAdapter {
 		room = new TileGrid(TILE_SIZE*2, TILE_SIZE*6, WINDOW_WIDTH-(TILE_SIZE*2), WINDOW_HEIGHT-(TILE_SIZE*1));
 		room.generate();
 		spawnPoint = room.getStartIndex();	//y kordinátán val óelhelyezkedés
-		enemy = new Basic(room.getTileDataesByInd(spawnPoint, 0));
+		enemy = new Basic(room);
 		wav = new Wave(3, 100f, enemy);
 		resetTimer();
 	}	
