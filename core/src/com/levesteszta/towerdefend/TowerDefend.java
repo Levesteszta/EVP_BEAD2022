@@ -4,7 +4,6 @@ import static com.levesteszta.towerdefend.helpers.Artist.*;
 import static com.levesteszta.towerdefend.helpers.Clock.*;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -12,7 +11,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
 public class TowerDefend extends ApplicationAdapter {
-	public static final float SPEED = 1f;
 	int spawnPoint;
 
 	ShapeRenderer render;
@@ -56,11 +54,9 @@ public class TowerDefend extends ApplicationAdapter {
 		render.end();
 		room.draw();
 		
-		//enemy.update(getTimer());
-		//enemy.draw();
-		Sprite reg = new Sprite(new Texture("terrain.png")); 
-		DrawTex(reg.getTexture(),0,0,TILE_SIZE);
-		//DrawTex(getTexturesFromArea("terrain.png")[0][0].getTexture(), 0, 0, TILE_SIZE);
+		Sprite[] reg = getTexturesFromArea("terrain.png",16); 
+		DrawTex(reg[0],0,0,TILE_SIZE);
+
 		wav.update(getTimer());
 	}
 }

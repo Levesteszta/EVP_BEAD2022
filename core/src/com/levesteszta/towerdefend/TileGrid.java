@@ -22,9 +22,9 @@ public class TileGrid{
 			for(int j = 0; j < map[i].length; j++){
                 switch(map[i][j]){
                     case 0:
-					    map_grid2[i][j] = new Tile((start_X)+j*32,(start_Y)+i*32,32,TileType.Fold);break;
+					    map_grid2[i][j] = new Tile((start_X)+j*32,(start_Y)+i*32,32,TileType.getRandomDirt());break;
                     case 1:
-					    map_grid2[i][j] = new Tile((start_X)+j*32,(start_Y)+i*32, 32,TileType.Ut);break;
+					    map_grid2[i][j] = new Tile((start_X)+j*32,(start_Y)+i*32, 32,TileType.getRandomRoad());break;
 
                 }
             };
@@ -41,7 +41,7 @@ public class TileGrid{
 
     public int getStartIndex(){
         for(int i = 0; i < map_grid2[0].length;i++){
-            if(map_grid2[i][0].getTile() == TileType.Ut)
+            if(map_grid2[i][0].getTile().id == 1)
                 return i;
         }
         return 0;

@@ -2,8 +2,8 @@ package com.levesteszta.towerdefend.helpers;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.GL20;
 
 public class Artist {
@@ -11,23 +11,33 @@ public class Artist {
     public static int TILE_SIZE = 32;
     static SpriteBatch batch = new SpriteBatch(1);
     public static void DrawTex(Texture texture, float x, float y, float size){
-        texture.bind(0);
+        texture.bind();
         Gdx.gl.glActiveTexture(GL20.GL_TEXTURE0);
         batch.begin();
         batch.draw(texture, x, y, size, size);
         batch.end();
     }
-
-    public static TextureRegion[][] getTexturesFromArea(String name){
-        return new TextureRegion(new Texture(name)).split(16, 16);
+    public static void DrawTex(Sprite sp, float x, float y, float size){
+        batch.begin();
+        batch.draw(sp, x, y, size, size);
+        batch.end();
     }
 
-    public static Texture GetInternalTexture(String name){ 
-        return new Texture(Gdx.files.internal(name));
+    public static Sprite[] getTexturesFromArea(String Filename, int size){
+        Texture origin = new Texture(Filename);
+        int n = (int)(origin.getWidth()/size);
+        Sprite[] sp = new Sprite[n];
+        for(int i = 0; i < n; i++)
+            sp[i] = new Sprite(origin,i*size,0,16,16);
+        return sp;
     }
 
-    public static Texture GetTexture(String name){
-        return new Texture(name);
+    public static Texture GetInternalTexture(String Filename){ 
+        return new Texture(Gdx.files.internal(Filename));
+    }
+
+    public static Texture GetTexture(String Filename){
+        return new Texture(Filename);
     }
 
     public static void Dispose(){
