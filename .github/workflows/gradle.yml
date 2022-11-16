@@ -29,4 +29,4 @@ jobs:
     - name: chmod
       run: chmod +x gradlew
     - name: build
-      run: ./gradlew test --test 'test.java.*'
+      run: ./gradlew test --tests 'test.java.*'
