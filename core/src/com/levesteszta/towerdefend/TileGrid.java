@@ -58,4 +58,18 @@ public class TileGrid{
         return map_grid2[(int)(xCord/32)][(int)(yCord/32)] = new Tile((int)(xCord/32), (int)(yCord/32), 32, type);
     }
 
+    // Tesztek végett kell 
+
+    public int getWidth() {
+        return map[0].length;
+    }
+
+    public int getHeight() {
+        return map.length;
+    }
+
+    public void TEST_Generate(){
+        map = new Map().generate((int)WINDOW_HEIGHT, (int)WINDOW_WIDTH);
+    }
+
 }

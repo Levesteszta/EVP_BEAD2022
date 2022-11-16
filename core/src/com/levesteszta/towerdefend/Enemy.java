@@ -12,9 +12,9 @@ class Enemy {
     protected Tile startTile;
     protected int size, health, damage;   //Pozicio, méret,Életerő,dmg;                      
     protected Sprite[] textures;                  //Textura, késöbbiekben ez Sprite-ra cserélendő
-    private boolean first = true;
-    private TileGrid grid;
-    private int[] direction;
+    protected int[] direction;
+    protected boolean first = true;
+    protected TileGrid grid;
 
     Enemy(TileGrid grid, int size ,int health, int damage, Sprite[] textures){
         this.health = health;
@@ -62,10 +62,6 @@ class Enemy {
         //Tile left = grid.getTileDataesByInd(now.getXInd() - 1, now.getYInd());    //Jelenleg nem igazán van ilyen eset inkább ki is veszem minthogy baj legyen belöle
         Tile right = grid.getTileDataesByInd(now.getYInd(), now.getXInd()+1);
 
-        System.out.println("Fel: "+now.getTile().id+" =?= "+up.getTile().id);
-        System.out.println("Le: "+now.getTile().id+" =?= "+down.getTile().id);
-        System.out.println("Jobb:"+now.getTile().id+" =?= "+right.getTile().id);
-        
         if(now.getTile().id == up.getTile().id){
             dir[0] = 1; dir[1] = 0;
         }if(now.getTile().id == down.getTile().id){

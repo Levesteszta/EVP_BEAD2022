@@ -1,6 +1,7 @@
 package com.levesteszta.towerdefend.helpers;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -24,7 +25,7 @@ public class Artist {
     }
 
     public static Sprite[] getTexturesFromArea(String Filename, int size){
-        Texture origin = new Texture(Filename);
+        Texture origin = GetTexture(Filename);
         int n = (int)(origin.getWidth()/size);
         Sprite[] sp = new Sprite[n];
         for(int i = 0; i < n; i++)
@@ -32,12 +33,11 @@ public class Artist {
         return sp;
     }
 
-    public static Texture GetInternalTexture(String Filename){ 
-        return new Texture(Gdx.files.internal(Filename));
-    }
-
     public static Texture GetTexture(String Filename){
-        return new Texture(Filename);
+        AssetManager am = new AssetManager();
+        am.load(Filename,Texture.class);
+        am.finishLoading();
+        return am.get(Filename);
     }
 
     public static void Dispose(){

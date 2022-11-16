@@ -1,15 +1,20 @@
 @startuml
 scale 2
 enum TileType {
-    +Texture : Texture;
-    +isClickable : boolean
-    +Fold()
-    +Ut()
+    +Sprite : Sprite
+    +isPlaceable : boolean
+    +id : into
+    -RANDOM : Random
+    -SIZE : int
+    +getRandomDirt : Dirt
+    +getRandomRoad : Road
+    +Dirt0-11()
+    +Road0-4()
 }
 +class Tile {
     -x, y, size : float
     -tile : TileType
-    -Texture texture
+    -Sprite: Sprite
     +Tile(float x, float y, float size, TileType tile)
     +draw() : void
     +getTile() : TileType 
@@ -21,6 +26,7 @@ class TowerDefend {
 	+SPEED = 1f : static final float 
 	-spawnPoint : int
 	-render : ShapeRenderer
+    -camera : OrthographicCamera
 	-room : TileGrid
 	-enemy : Enemy
 	+create()	
@@ -30,17 +36,22 @@ class TowerDefend {
 class Enemy {
     #SPEED = 1.0f, MULT = 0.3f  : static float
     #x, y: float
+    #direction : int[]
     #startTile : Tile
+    #grid:TileGrid
     #size, health, damage : int                     
-    #texture : Texture
+    #sprites : Sprite[]
     #first = true : boolean
-    Enemy(Tile spawnTile, int size ,int health, int damage, Texture texture)
+    Enemy(TileGrid grid, int size ,int health, int damage, Sprite[] textures)
     
     #remove()
     #setX(float deltaX)
+    #setY(float deltaX)
     #update(float deltaX)
+    #FindNextRoadTile(Tile now) : int[]
     #draw()
     #getStartTile() : Tile
+    #getTileGrid() : TileGrid
 }
 class Basic
 class Wave {
@@ -84,11 +95,33 @@ class TileGrid{
     +setTileDataes(float xCord, float yCord,TileType type): Tile
 }
 
+class Artist{
+    +WINDOW_WIDTH , WINDOW_HEIGHT: float
+    +TILE_SIZE: int
+    +batch : SpriteBatch
+    +DrawTex(Sprite sp, float x, float y, float size) : void
+    +DrawTex(Texture texture, float x, float y, float size)
+    +getTexturesFromArea : Sprite[]
+    +GetInternalTexture : Texture
+    +GetTexture : Texture
+    +Dispose : void
+}
+
+class Clock{
+    +time : float
+    +getTimer() : float
+    +setDelta() : void
+    +resetTimer() : void
+}
+
 TowerDefend "1" -- "N" Wave
+TowerDefend -- Clock
 TowerDefend -- TileGrid 
 TileGrid o-- Map
 TileGrid o-- Tile
 Tile -- TileType
 Wave "1" *-- "N" Enemy
 Enemy <|-- Basic
+Artist -- Enemy
+Artist -- Tile
 @enduml
