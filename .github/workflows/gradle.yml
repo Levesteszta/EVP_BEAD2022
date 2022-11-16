@@ -30,9 +30,8 @@ jobs:
       run: chmod +x gradlew
     - name: build
       run: ./gradlew test --tests 'test.java.*'
-    - name: report
-      uses: actions/upload-artifact@v1
+    - name: Archive test report
+      uses: actions/upload-artifact@v2
       with:
-        name: UNIT_TEST_1
-        path: core/build/reports/tests/test/*
-      
+        name: Test report
+        path: build/reports/tests/test
