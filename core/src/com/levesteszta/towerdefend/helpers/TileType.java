@@ -44,4 +44,8 @@ public enum TileType {
         int pick = RANDOM.nextInt(SIZE-11)+11;
         return TileType.values()[pick];
     }
+
+    public static TileType[] getTypes(){
+        return TileType.values();
+    }
 }

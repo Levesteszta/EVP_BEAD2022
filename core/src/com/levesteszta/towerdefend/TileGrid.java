@@ -1,12 +1,13 @@
 package com.levesteszta.towerdefend;
-
 import com.levesteszta.towerdefend.helpers.TileType;
+
 
 public class TileGrid{
     private float start_X, start_Y;
     private float WINDOW_HEIGHT, WINDOW_WIDTH;
     private Tile[][] map_grid2;
     private int[][] map;
+    TileType[] types = TileType.getTypes();
 
     public TileGrid(float start_X, float start_Y, float end_X, float end_Y){
         this.start_X = start_X;

@@ -54,11 +54,19 @@ project(":desktop") {
 project(":core") {
     apply plugin: "java-library"
 
+    sourceSets.test.java.srcDirs = [ "src/test/java/" ]
+    sourceSets.test.resources.srcDirs = [ "../core/assets/" ]
+    sourceSets.main.resources.srcDirs = [ "../core/assets/" ]
+
     dependencies {
         api "com.badlogicgames.gdx:gdx:$gdxVersion"
         api "junit:junit:4.13"
         api "org.hamcrest:hamcrest-core:1.3"
 
         testImplementation "junit:junit:4.13"
+        testImplementation "com.badlogicgames.gdx:gdx:$gdxVersion"
+        testImplementation "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
+        testImplementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+
     }
 }

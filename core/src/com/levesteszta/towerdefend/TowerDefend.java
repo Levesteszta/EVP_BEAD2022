@@ -5,14 +5,15 @@ import static com.levesteszta.towerdefend.helpers.Clock.*;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
 public class TowerDefend extends ApplicationAdapter {
+	public static SpriteBatch batch;
 	int spawnPoint;
-
 	ShapeRenderer render;
 	TileGrid room; 
 	Enemy enemy;
@@ -21,6 +22,7 @@ public class TowerDefend extends ApplicationAdapter {
 
 	@Override
 	public void create() {
+		batch = new SpriteBatch();
 		render = new ShapeRenderer();
 		camera = new OrthographicCamera(WINDOW_WIDTH, WINDOW_HEIGHT);
 		camera.rotate(90,0,0,1);
