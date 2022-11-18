@@ -7,6 +7,7 @@ public class TileGrid{
     private float WINDOW_HEIGHT, WINDOW_WIDTH;
     private Tile[][] map_grid2;
     private int[][] map;
+
     public TileGrid(float start_X, float start_Y, float end_X, float end_Y){
         this.start_X = start_X;
         this.start_Y = start_Y;

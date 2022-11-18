@@ -1,20 +1,20 @@
 package com.levesteszta.towerdefend;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-
 import static com.levesteszta.towerdefend.helpers.Artist.*;
 
 // Ős
-class Enemy {
-    protected static float SPEED = 1.0f, MULT = 0.4f;        //Jelenleg a mozgás sebessége adott mindenkinél, egy multiplifáció hogy ne szaladjon ki , inkább csak sétáljon nyugodtan
+public class Enemy {
+    protected static float SPEED = 0.4f;        //Jelenleg a mozgás sebessége adott mindenkinél, egy multiplifáció hogy ne szaladjon ki , inkább csak sétáljon nyugodtan
     protected float x, y; 
     protected Tile startTile;
-    protected int size, health, damage;   //Pozicio, méret,Életerő,dmg;                      
+    protected int size, health, damage;           //méret, Életerő, sebzés;                      
     protected Sprite[] textures;                  //Textura, késöbbiekben ez Sprite-ra cserélendő
     protected int[] direction;
     protected boolean first = true;
     protected TileGrid grid;
+
+    protected boolean flagedToDead = false;
 
     Enemy(TileGrid grid, int size ,int health, int damage, Sprite[] textures){
         this.health = health;
@@ -35,10 +35,10 @@ class Enemy {
     }
 
     protected void setX(float delta){
-        this.x += (delta*SPEED)*MULT;
+        this.x += (delta*SPEED);
     }
     protected void setY(float delta){
-        this.y += (delta*SPEED)* MULT;
+        this.y += (delta*SPEED);
     }
 
     protected void update(float delta){
@@ -49,6 +49,9 @@ class Enemy {
             this.setY(delta * direction[0]);
             direction = this.FindNextRoadTile(grid.getTileDataesByInd((int)(y/TILE_SIZE)-6, (int)(x/TILE_SIZE)-2));
         }
+
+        if(this.health <= 0)
+            this.flagedToDead = true;
     }
 
     protected void draw(){
@@ -80,17 +83,26 @@ class Enemy {
         return dir;
     }
 
-    protected Tile getStartTile() {
+    public Tile getStartTile() {
         return this.startTile;
     }
-    protected TileGrid getTileGrid(){
+    public TileGrid getTileGrid(){
         return this.grid;
     }
-}
 
-// Ellenfél fajták
-class Basic extends Enemy{
-    public Basic(TileGrid grid){
-        super(grid,32,100,10, getTexturesFromArea("enemy01.png",16));
+    //getter-setter methods
+    public int getHp(){
+        return this.health;
+    }
+    protected void setHp(int hp){
+        this.health = hp;
+    }
+
+    public void getHit(int towerDamageValue){
+        this.damage -= towerDamageValue;
+    }
+
+    public boolean isDead(){
+        return this.flagedToDead;
     }
 }

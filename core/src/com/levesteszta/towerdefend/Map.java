@@ -10,16 +10,16 @@ public class Map {
     Random rand = new Random();
 
     private void setup(int get_YRange, int get_XRange){
-        try{
-            widthRange = (int)Math.floor(get_XRange/32.0);      //Hány 32x32 es kockát tudunk az X (szélesség) számegyenesre rakni 
-            heightRange = (int)Math.floor(get_YRange/32.0);     //Hány 32x32 es kockát tudunk az Y (magasság) száemgyenesre rakni 
-            
-            map2D = new int[heightRange][widthRange];
-            for(int i = 0; i < map2D.length;i++)
-                for(int y = 0; y < map2D[i].length;y++)
-                    map2D[i][y] = 0;
-            wasSetup = true;
-        }catch(Exception e){wasSetup=false; return;}
+        widthRange = (int)Math.floor(get_XRange/32.0);      //Hány 32x32 es kockát tudunk az X (szélesség) számegyenesre rakni 
+        heightRange = (int)Math.floor(get_YRange/32.0);     //Hány 32x32 es kockát tudunk az Y (magasság) száemgyenesre rakni 
+        if(widthRange <= 0 || heightRange <= 0)
+            throw new IllegalArgumentException();
+
+        map2D = new int[heightRange][widthRange];
+        for(int i = 0; i < map2D.length;i++)
+            for(int y = 0; y < map2D[i].length;y++)
+                map2D[i][y] = 0;
+        wasSetup = true;
     }
 
     private void GenerateIndexes(){
