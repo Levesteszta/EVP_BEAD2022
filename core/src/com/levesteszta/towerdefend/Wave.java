@@ -18,16 +18,15 @@ public class Wave {
         enemies = new ArrayList<Enemy>(maxdb);
     }
 
-    public void update(float deltaTime){
-        lastSpawnTime += deltaTime;
+    public void update(){
+        lastSpawnTime += Delta();
         if(lastSpawnTime > spawnTime){
             spawn();
             lastSpawnTime = 0f;
-            resetTimer();
         }
 
         for(Enemy e : enemies){
-            e.update(deltaTime);
+            e.update();
             e.draw();
         }
     }

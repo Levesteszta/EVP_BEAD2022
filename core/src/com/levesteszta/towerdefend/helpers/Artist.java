@@ -6,6 +6,8 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.graphics.GL20;
 
 public class Artist {
@@ -24,6 +26,18 @@ public class Artist {
         TowerDefend.batch.begin();
         TowerDefend.batch.draw(sp, x, y, size, size);
         TowerDefend.batch.end();
+    }
+
+    public static void DrawDebugLines(){
+        ShapeRenderer render = new ShapeRenderer();
+        render.begin(ShapeType.Line);
+		for(int i = 0; i < WINDOW_WIDTH/32;i++){
+			for(int j = 0; j < WINDOW_HEIGHT/32; j++){
+				render.line(i*32, 0,i*32, j*32);
+				render.line(0, j*32,i*32, j*32);
+			}
+		}
+		render.end();
     }
 
     public static Sprite[] getTexturesFromArea(String Filename, int size){
