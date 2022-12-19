@@ -25,7 +25,7 @@ public enum TileType {
     
     public Sprite sprite;
     public boolean isPlaceable;
-    public int id;  //0-Fold, 1- UT 2- amire nem lehet rakni föld
+    public int id;  //0-Fold, 1-UT 2-amire nem lehet rakni föld
     private static final Random RANDOM = new Random();
     private static final int SIZE = TileType.values().length;
     TileType(Sprite sprite, boolean isPlaceable,int id){
