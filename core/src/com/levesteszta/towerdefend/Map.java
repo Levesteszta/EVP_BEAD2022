@@ -1,5 +1,4 @@
 package com.levesteszta.towerdefend;
-
 import java.util.*;
 
 public class Map {

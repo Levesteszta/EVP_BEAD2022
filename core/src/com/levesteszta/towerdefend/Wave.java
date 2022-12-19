@@ -3,6 +3,7 @@ package com.levesteszta.towerdefend;
 import static com.levesteszta.towerdefend.helpers.Clock.*;
 import java.util.ArrayList;
 
+
 public class Wave {
     private static int db = 0;
     private int maxdb;

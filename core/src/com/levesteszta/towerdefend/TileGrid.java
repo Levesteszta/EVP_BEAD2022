@@ -1,7 +1,6 @@
 package com.levesteszta.towerdefend;
 import com.levesteszta.towerdefend.helpers.TileType;
 
-
 public class TileGrid{
     private float start_X, start_Y;
     private float WINDOW_HEIGHT, WINDOW_WIDTH;

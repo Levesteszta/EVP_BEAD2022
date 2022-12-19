@@ -2,7 +2,6 @@ package com.levesteszta.towerdefend;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Interpolation;
-
 import static com.levesteszta.towerdefend.helpers.Artist.*;
 
 // Ős

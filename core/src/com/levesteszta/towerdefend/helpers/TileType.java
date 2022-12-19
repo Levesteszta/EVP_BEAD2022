@@ -1,7 +1,6 @@
 package com.levesteszta.towerdefend.helpers;
 
 import java.util.Random;
-
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public enum TileType {

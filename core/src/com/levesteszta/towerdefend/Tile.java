@@ -1,7 +1,6 @@
 package com.levesteszta.towerdefend;
 
 import static com.levesteszta.towerdefend.helpers.Artist.*;
-
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.levesteszta.towerdefend.helpers.TileType;
 

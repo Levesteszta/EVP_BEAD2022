@@ -1,6 +1,5 @@
 package com.levesteszta.towerdefend.helpers;
 
-
 public class Clock {
     private static boolean paused = false;
     private static long lastFrame, totalTime;
