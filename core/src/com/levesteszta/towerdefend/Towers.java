@@ -1,4 +1,4 @@
-package com.levesteszta.towerdefend;
+/*package com.levesteszta.towerdefend;
 
 import java.sql.Time;
 import java.time.LocalTime;
@@ -7,12 +7,9 @@ import java.util.Timer;
 
 public abstract class Towers {
 
-    int atk;
-    int range;
-    int cost;
-    int health;
-    char type;
-    private float x,y;
+    public float x,y;
+    public int atk, range, cost, health, defaultDMG;
+    public char type;    // f - , i - , w - , e - 
 
     public float getX() {
         return x;
@@ -103,14 +100,6 @@ public abstract class Towers {
         }
         return dmg;
     }
-    
-    /*
-    public static void main(String [] args){
-        Towers asd = new Fire();
-
-        System.out.print(asd.damageDealt('i'));
-    }
-    */
 }
 
 
@@ -170,4 +159,4 @@ class Air extends Towers{
         this.cost = 120;
         this.type = 'a';
     }
-}
+}*/

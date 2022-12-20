@@ -2,25 +2,26 @@ package com.levesteszta.towerdefend;
 
 import static com.levesteszta.towerdefend.helpers.Clock.*;
 import java.util.ArrayList;
-
-
+import java.util.Random;
 public class Wave {
     private static int db = 0;
+    private static Random RANDOM = new Random();
     private int maxdb;
     private float spawnTime, lastSpawnTime;
-    private Enemy enemyType;
+    TileGrid grid;
     private ArrayList<Enemy> enemies;
 
-    public Wave(int db, float spawnTime, Enemy enemyType){
-        this.maxdb = db;
+    public Wave(int leastDb, float spawnTime, TileGrid grid){
+        this.maxdb = leastDb;
         this.spawnTime = spawnTime;
-        this.enemyType = enemyType;
         lastSpawnTime = 0f;
         enemies = new ArrayList<Enemy>(maxdb);
+        this.grid = grid; 
     }
 
     public void update(){
         lastSpawnTime += Delta();
+        System.out.println("lastSpawnTime: "+lastSpawnTime);
         if(lastSpawnTime > spawnTime){
             spawn();
             lastSpawnTime = 0f;
@@ -34,9 +35,20 @@ public class Wave {
 
     public void spawn(){
         if(db < maxdb){
-            enemies.add(new Basic(enemyType.getTileGrid()));
+            int pick = RANDOM.nextInt(2);   //0 - 1 
+            switch(pick){
+                case 0:
+                    enemies.add(new Basic(grid));break;
+                case 1:
+                    enemies.add(new Fire(grid));break;
+                default:
+                    break;
+            }
             db++;
         }
     }
 
+    public ArrayList<Enemy> getEnemies() {
+        return this.enemies;
+    }
 }

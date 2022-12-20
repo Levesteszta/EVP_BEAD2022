@@ -4,7 +4,6 @@ import static com.levesteszta.towerdefend.helpers.Artist.*;
 import static com.levesteszta.towerdefend.helpers.Clock.*;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.levesteszta.towerdefend.helpers.Clock;
 import com.badlogic.gdx.ApplicationAdapter;
@@ -16,7 +15,10 @@ public class TowerDefend extends ApplicationAdapter {
 	TileGrid room; 
 	Enemy enemy;
 	Wave wav;
+	WaveManager waveManager;
 	OrthographicCamera camera;
+
+	myTower tower;
 
 	@Override
 	public void create() {
@@ -25,9 +27,16 @@ public class TowerDefend extends ApplicationAdapter {
 		camera.rotate(90,0,0,1);
 		room = new TileGrid(TILE_SIZE*2, TILE_SIZE*6, WINDOW_WIDTH-(TILE_SIZE*2), WINDOW_HEIGHT-(TILE_SIZE*1));
 		room.generate();
-		spawnPoint = room.getStartIndex();	//y kordinátán val óelhelyezkedés
+		spawnPoint = room.getStartIndex();	//y kordinátán való elhelyezkedés
 		enemy = new Basic(room);
-		wav = new Wave(1, 350f, enemy);
+		enemy = new Fire(room);
+		//wav = new Wave(3, 5f, room);
+		
+		//tower = new BaseTower(room, wav.getEnemies());
+		//tower.setStandingTile(room.getTileDataesByInd(4, 3)); 
+
+		waveManager = new WaveManager(2, room);
+		//System.out.println("PAIN: "+1+"");
 	}	
 	
 	@Override
@@ -42,16 +51,14 @@ public class TowerDefend extends ApplicationAdapter {
 		Gdx.graphics.setContinuousRendering(true);
 
 		Clock.update();
-
 		camera.update();
-
 
 		DrawDebugLines();
 		room.draw();
 		
-		Sprite[] reg = getTexturesFromArea("terrain.png",16); 
-		DrawTex(reg[0],0,0,TILE_SIZE);
+		//tower.draw();
+		//tower.update();
 
-		wav.update();
+		waveManager.update();
 	}
 }
