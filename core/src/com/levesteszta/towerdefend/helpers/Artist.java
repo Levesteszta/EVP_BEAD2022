@@ -2,16 +2,21 @@ package com.levesteszta.towerdefend.helpers;
 
 import com.levesteszta.towerdefend.*;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.SkinLoader;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.graphics.GL20;
 
 public class Artist {
     //public static SpriteBatch batch = new SpriteBatch();
+    private static AssetManager am = new AssetManager();
+    public static final AssetDescriptor<Skin> SKIN = new AssetDescriptor<Skin>(Gdx.files.internal("uiskin.json"),Skin.class,new SkinLoader.SkinParameter(Gdx.files.internal("uiskin.atlas").path()));
     public static final float WINDOW_WIDTH = 997f, WINDOW_HEIGHT = 706f;
     public static int TILE_SIZE = 32;
 
@@ -50,7 +55,6 @@ public class Artist {
     }
 
     public static Texture GetTexture(String Filename){
-        AssetManager am = new AssetManager();
         am.load(Filename,Texture.class);
         am.finishLoading();
         return am.get(Filename);
@@ -62,5 +66,13 @@ public class Artist {
 
     public static double getRange(Vector2 object1, Vector2 object2){
         return Math.sqrt(Math.pow((object2.x - object1.x), 2) + Math.pow((object2.y - object1.y), 2));
+    }
+
+    public static void LoadAll(){
+        am.load(SKIN);
+    }
+
+    public static AssetManager getAssetManager(){
+        return am;
     }
 }

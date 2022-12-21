@@ -3,6 +3,10 @@ package com.levesteszta.towerdefend;
 import static com.levesteszta.towerdefend.helpers.Clock.*;
 import java.util.ArrayList;
 import java.util.Random;
+
+import com.levesteszta.towerdefend.GameObjects.Enemies.Basic;
+import com.levesteszta.towerdefend.GameObjects.Enemies.Fire;
+import com.levesteszta.towerdefend.GameObjects.Enemies.Enemy;
 public class Wave {
     private static int db = 0;
     private static Random RANDOM = new Random();

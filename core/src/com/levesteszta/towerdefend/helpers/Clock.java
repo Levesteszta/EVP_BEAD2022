@@ -35,4 +35,11 @@ public class Clock {
         d = getDelta();
         totalTime += d;
     }
+
+    public static void Stop(){
+        paused = true;
+    }
+    public static void Play(){
+        paused = false;
+    }
 }

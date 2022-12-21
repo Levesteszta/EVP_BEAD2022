@@ -2,6 +2,7 @@ package com.levesteszta.towerdefend;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import com.levesteszta.towerdefend.GameObjects.Enemies.Enemy;
 
 import static com.levesteszta.towerdefend.helpers.Artist.*;
 import static com.levesteszta.towerdefend.helpers.Clock.*;

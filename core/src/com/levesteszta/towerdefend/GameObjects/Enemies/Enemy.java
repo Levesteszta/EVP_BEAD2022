@@ -1,17 +1,20 @@
-package com.levesteszta.towerdefend;
+package com.levesteszta.towerdefend.GameObjects.Enemies;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Interpolation;
+import com.levesteszta.towerdefend.Tile;
+import com.levesteszta.towerdefend.TileGrid;
+
 import static com.levesteszta.towerdefend.helpers.Artist.*;
 
 // Ős
 public abstract class Enemy {
+    public float x, y; 
     private static int ENEMY_ID = 0;
     private int[] direction;
     private float[] oldDir = {0f, 0f} , newDir;
     protected int id;
     protected static float SPEED = 0.1f;        //Jelenleg a mozgás sebessége adott mindenkinél, egy multiplifáció hogy ne szaladjon ki , inkább csak sétáljon nyugodtan
-    protected float x, y; 
     protected Tile startTile;
     protected int size, health, damage;           //méret, Életerő, sebzés;                      
     protected Sprite[] textures;                  //Textura, késöbbiekben ez Sprite-ra cserélendő
@@ -40,7 +43,7 @@ public abstract class Enemy {
     }
 
 
-    protected void update(){
+    public void update(){
         if(first)
             first = false;
         else{
@@ -70,7 +73,7 @@ public abstract class Enemy {
             this.remove();
     }
 
-    protected void draw(){
+    public void draw(){
         DrawTex(this.textures[0], x, y, TILE_SIZE);
     };
 
@@ -129,19 +132,5 @@ public abstract class Enemy {
 
     public boolean isDead(){
         return this.flagedToDead;
-    }
-}
-
-class Basic extends Enemy {
-    static final char TYPE = 'b';
-    public Basic(TileGrid grid){
-        super(grid,32,100,10, getTexturesFromArea("ellenfel.png",16));
-    }
-}
-
-class Fire extends Enemy {
-    static final char TYPE = 'f';
-    public Fire(TileGrid grid){
-        super(grid,32,150,20, getTexturesFromArea("ellenfel2.png",16));
     }
 }
