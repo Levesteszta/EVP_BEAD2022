@@ -14,27 +14,37 @@ public class Wave {
     private float spawnTime, lastSpawnTime;
     TileGrid grid;
     private ArrayList<Enemy> enemies;
+    private boolean waveCompleted;
 
-    public Wave(int leastDb, float spawnTime, TileGrid grid){
-        this.maxdb = leastDb;
+    public Wave(int db, float spawnTime, TileGrid grid){
+        this.maxdb = db;
         this.spawnTime = spawnTime;
-        lastSpawnTime = 0f;
-        enemies = new ArrayList<Enemy>(maxdb);
         this.grid = grid; 
+        this.lastSpawnTime = 0f;
+        this.enemies = new ArrayList<Enemy>();
+        this.waveCompleted = false;
+
+        spawn();
     }
 
     public void update(){
+        boolean allEnemiesDied = true;
         lastSpawnTime += Delta();
-        System.out.println("lastSpawnTime: "+lastSpawnTime);
-        if(lastSpawnTime > spawnTime){
-            spawn();
-            lastSpawnTime = 0f;
+        if(enemies.size() < maxdb){
+            if(lastSpawnTime > spawnTime){
+                spawn();
+                lastSpawnTime = 0f;
+            }
         }
-
         for(Enemy e : enemies){
-            e.update();
-            e.draw();
+            if(!e.isDead()){
+                allEnemiesDied = false;
+                e.update();
+                e.draw();
+            }
         }
+        if(allEnemiesDied)
+            waveCompleted = true;
     }
 
     public void spawn(){
@@ -54,5 +64,9 @@ public class Wave {
 
     public ArrayList<Enemy> getEnemies() {
         return this.enemies;
+    }
+
+    public boolean isWaveCompleted(){
+        return this.waveCompleted;
     }
 }

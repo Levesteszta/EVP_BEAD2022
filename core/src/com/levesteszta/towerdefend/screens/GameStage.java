@@ -33,12 +33,13 @@ public class GameStage extends ScreenAdapter {
         this.game = game;
         this.assetManager = assetManager;
         room = new TileGrid(TILE_SIZE*2, TILE_SIZE*6, WINDOW_WIDTH-(TILE_SIZE*2), WINDOW_HEIGHT-(TILE_SIZE*1));
+        Clock.ResetTimer();
+        Clock.Play();
     }
     
     @Override
     public void show() {
         TowerDefend.batch = new SpriteBatch();
-        Clock.Play();
         room.generate();
 		spawnPoint = room.getStartIndex();	//y kordinátán való elhelyezkedés
 		enemy = new Basic(room);
@@ -58,14 +59,14 @@ public class GameStage extends ScreenAdapter {
         Gdx.graphics.setContinuousRendering(true);
         
 		Clock.update();
-
-		DrawDebugLines();
 		room.draw();
+
+		//DrawDebugLines();
 		
 		//tower.draw();
 		//tower.update();
-
 		waveManager.update();
+
     }
     @Override
     public void dispose() {

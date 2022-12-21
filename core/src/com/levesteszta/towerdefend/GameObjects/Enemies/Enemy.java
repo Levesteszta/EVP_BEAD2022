@@ -38,11 +38,6 @@ public abstract class Enemy {
         this.direction = FindNextRoadTile(startTile);
     }
 
-    protected void remove(){
-        Dispose();
-    }
-
-
     public void update(){
         if(first)
             first = false;
@@ -65,12 +60,9 @@ public abstract class Enemy {
             }
         }
 
-        if(Math.round(this.x) > Math.round(grid.getWidth()*TILE_SIZE)){
-            //TODO : bázis sebződés
-            this.remove();
+        if(Math.round(this.x) >= Math.round(grid.getWidth()*TILE_SIZE)){
+            Die();
         }
-        if(isDead())
-            this.remove();
     }
 
     public void draw(){
@@ -122,7 +114,7 @@ public abstract class Enemy {
     }
     protected void setHp(int hp){
         if(hp < 0)
-            this.flagedToDead = true;
+            Die();
         this.health = hp;
     }
 
@@ -132,5 +124,9 @@ public abstract class Enemy {
 
     public boolean isDead(){
         return this.flagedToDead;
+    }
+
+    public void Die(){
+        this.flagedToDead = true;
     }
 }
