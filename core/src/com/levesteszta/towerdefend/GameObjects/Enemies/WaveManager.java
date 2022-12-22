@@ -1,6 +1,9 @@
-package com.levesteszta.towerdefend;
+package com.levesteszta.towerdefend.GameObjects.Enemies;
 
 import java.util.Random;
+
+import com.levesteszta.towerdefend.MapGen.TileGrid;
+
 import static com.levesteszta.towerdefend.helpers.Clock.*;
 
 public class WaveManager {
@@ -23,9 +26,9 @@ public class WaveManager {
 
     public void update(){
         if(!currentWave.isWaveCompleted()){
-            System.out.println("Max: "+maxdb);
-            System.out.println("Ez a "+db+". wave ");
-            System.out.println("Wave adatok: "+currentWave.getEnemies().size()+" db enemy van...");
+            //System.out.println("Max: "+maxdb);
+            //System.out.println("Ez a "+db+". wave ");
+            //System.out.println("Wave adatok: "+currentWave.getEnemies().size()+" db enemy van...");
             currentWave.update();
         } 
         else{

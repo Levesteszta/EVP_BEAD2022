@@ -1,4 +1,4 @@
-package com.levesteszta.towerdefend;
+package com.levesteszta.towerdefend.MapGen;
 
 import static com.levesteszta.towerdefend.helpers.Artist.*;
 import com.badlogic.gdx.graphics.g2d.Sprite;

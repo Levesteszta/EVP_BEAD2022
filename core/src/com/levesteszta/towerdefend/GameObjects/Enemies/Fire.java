@@ -1,7 +1,8 @@
 package com.levesteszta.towerdefend.GameObjects.Enemies;
 
 import static com.levesteszta.towerdefend.helpers.Artist.*;
-import com.levesteszta.towerdefend.TileGrid;
+
+import com.levesteszta.towerdefend.MapGen.TileGrid;
 
 public class Fire extends Enemy {
     static final char TYPE = 'f';

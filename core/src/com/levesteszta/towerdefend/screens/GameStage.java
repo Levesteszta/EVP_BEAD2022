@@ -1,27 +1,22 @@
 package com.levesteszta.towerdefend.screens;
 
-import static com.levesteszta.towerdefend.helpers.Clock.*;
 import static com.levesteszta.towerdefend.helpers.Artist.*;
 
-import com.badlogic.gdx.Game;
+import com.levesteszta.towerdefend.GameObjects.Enemies.*;
+import com.levesteszta.towerdefend.GameObjects.Towers.*;
+import com.levesteszta.towerdefend.MapGen.TileGrid;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.levesteszta.towerdefend.TileGrid;
 import com.levesteszta.towerdefend.TowerDefend;
-import com.levesteszta.towerdefend.Wave;
-import com.levesteszta.towerdefend.WaveManager;
-import com.levesteszta.towerdefend.myTower;
-import com.levesteszta.towerdefend.GameObjects.Enemies.*;
+import com.levesteszta.towerdefend.myGame;
 import com.levesteszta.towerdefend.helpers.Clock;
 
 public class GameStage extends ScreenAdapter {
     TowerDefend game;
-
-    int spawnPoint;
+    myGame myGame;
     AssetManager assetManager;
 	TileGrid room; 
 	Enemy enemy;
@@ -40,16 +35,7 @@ public class GameStage extends ScreenAdapter {
     @Override
     public void show() {
         TowerDefend.batch = new SpriteBatch();
-        room.generate();
-		spawnPoint = room.getStartIndex();	//y kordinátán való elhelyezkedés
-		enemy = new Basic(room);
-		enemy = new Fire(room);
-		//wav = new Wave(3, 5f, room);
-		
-		//tower = new BaseTower(room, wav.getEnemies());
-		//tower.setStandingTile(room.getTileDataesByInd(4, 3)); 
-
-		waveManager = new WaveManager(2, room);
+        myGame = new myGame(room);
     }
 
     @Override
@@ -59,14 +45,8 @@ public class GameStage extends ScreenAdapter {
         Gdx.graphics.setContinuousRendering(true);
         
 		Clock.update();
-		room.draw();
-
-		//DrawDebugLines();
-		
-		//tower.draw();
-		//tower.update();
-		waveManager.update();
-
+		myGame.update();
+        
     }
     @Override
     public void dispose() {

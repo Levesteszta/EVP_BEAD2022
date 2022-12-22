@@ -60,6 +60,12 @@ public class Artist {
         return am.get(Filename);
     }
 
+    public static Sprite GetSprite(String Filename){
+        Texture origin = GetTexture(Filename);
+        Sprite sp = new Sprite(origin,16,16);
+        return sp;
+    }
+
     public static void Dispose(){
         TowerDefend.batch.dispose();
     }

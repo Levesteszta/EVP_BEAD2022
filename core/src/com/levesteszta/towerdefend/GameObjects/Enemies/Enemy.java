@@ -2,14 +2,13 @@ package com.levesteszta.towerdefend.GameObjects.Enemies;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Interpolation;
-import com.levesteszta.towerdefend.Tile;
-import com.levesteszta.towerdefend.TileGrid;
+import com.levesteszta.towerdefend.MapGen.*;
 
 import static com.levesteszta.towerdefend.helpers.Artist.*;
 
 // Ős
 public abstract class Enemy {
-    public float x, y; 
+    private float x, y; 
     private static int ENEMY_ID = 0;
     private int[] direction;
     private float[] oldDir = {0f, 0f} , newDir;
@@ -36,6 +35,7 @@ public abstract class Enemy {
         // X - Y , Az útirányját belőni
         this.direction[0] = 0; this.direction[1] = 0;
         this.direction = FindNextRoadTile(startTile);
+
     }
 
     public void update(){
@@ -77,7 +77,7 @@ public abstract class Enemy {
         //Tile left = grid.getTileDataesByInd(now.getXInd() - 1, now.getYInd());    //Jelenleg nem igazán van ilyen eset inkább ki is veszem minthogy baj legyen belöle
         Tile right = grid.getTileDataesByInd(now.getYInd(), now.getXInd()+1);
 
-        if( (now.getTile().id == up.getTile().id) && (oldDir[0] != up.getY())){
+        if((now.getTile().id == up.getTile().id) && (oldDir[0] != up.getY())){
             dir[0] = 1; dir[1] = 0;
             oldDir[0] = now.getY(); oldDir[1] = now.getX();
             newDir[0] = up.getY(); newDir[1] = up.getX();
@@ -113,12 +113,14 @@ public abstract class Enemy {
         return this.health;
     }
     protected void setHp(int hp){
-        if(hp < 0)
-            Die();
         this.health = hp;
+
+        if(this.health <= 0)
+            Die();
     }
 
     public void takeDamage(int towerDamageValue){
+        System.out.println("Kaptam én:"+id+" , egy sallert: "+towerDamageValue);
         this.setHp(this.getHp() - towerDamageValue);
     }
 
@@ -128,5 +130,16 @@ public abstract class Enemy {
 
     public void Die(){
         this.flagedToDead = true;
+    }
+
+    public int getID(){
+        return this.id;
+    }
+
+    public float getX() {
+        return x;
+    }
+    public float getY() {
+        return y;
     }
 }

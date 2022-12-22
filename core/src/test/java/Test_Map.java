@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import com.levesteszta.towerdefend.*;
+import com.levesteszta.towerdefend.MapGen.Map;
 
 public class Test_Map {
     @Rule

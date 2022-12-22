@@ -1,4 +1,4 @@
-package com.levesteszta.towerdefend;
+package com.levesteszta.towerdefend.MapGen;
 import com.levesteszta.towerdefend.helpers.TileType;
 
 public class TileGrid{
