@@ -28,6 +28,7 @@ public class Artist {
         TowerDefend.batch.end();
     }
     public static void DrawTex(Sprite sp, float x, float y, float size){
+        Gdx.gl.glActiveTexture(GL20.GL_TEXTURE0);
         TowerDefend.batch.begin();
         TowerDefend.batch.draw(sp, x, y, size, size);
         TowerDefend.batch.end();

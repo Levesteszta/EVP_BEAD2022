@@ -43,6 +43,15 @@ public class Clock {
         totalTime += d;
     }
 
+    public static boolean Wait(float sec){
+        float dd = d + sec*0.0001f;
+        System.out.println("dd :"+dd);
+        System.out.println("d: "+d+" .. sec: "+sec);
+        if(dd == d)
+            return true;
+        return false;
+    }
+
     public static void Stop(){
         paused = true;
     }

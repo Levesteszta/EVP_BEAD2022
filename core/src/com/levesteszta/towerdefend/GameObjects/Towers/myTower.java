@@ -25,9 +25,17 @@ public abstract class myTower {
     }
     // Tile -
     public void setStandingTile(Tile standingTile) {
-        this.standingTile = standingTile;
-        this.x = standingTile.getX();
-        this.y = standingTile.getY();
+        if(this.standingTile.getTile().id == 0){
+            this.standingTile = standingTile;
+            this.x = standingTile.getX();
+            this.y = standingTile.getY();
+        }
+        else {
+            this.standingTile = null;
+            this.x = -1;
+            this.y = -1;
+            System.out.println("Nem jó a hely");
+        }
     }
     public Tile getStandingTile() {
         return standingTile;

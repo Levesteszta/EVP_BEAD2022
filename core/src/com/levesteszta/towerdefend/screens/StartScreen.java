@@ -36,7 +36,6 @@ public class StartScreen extends ScreenAdapter {
     public StartScreen(TowerDefend game, AssetManager assetManager){
         this.assetManager = assetManager;
         this.game = game;
-        System.out.println("### "+Artist.SKIN.file);
         skin = assetManager.get(Artist.SKIN);
     }
 
@@ -57,12 +56,14 @@ public class StartScreen extends ScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Play...");
+                mainTable.clear();
                 StartScreen.this.game.setScreen(new GameStage(game, assetManager));
             }
         });
         addButton("About").addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                //mainTable.clear();
                 System.out.println("About...");
             }
         });
@@ -71,6 +72,7 @@ public class StartScreen extends ScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Exit...");
+                mainTable.clear();
                 Gdx.app.exit();
             }
         });

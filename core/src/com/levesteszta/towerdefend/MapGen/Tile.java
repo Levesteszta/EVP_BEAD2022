@@ -46,6 +46,6 @@ public class Tile {
 
     @Override
     public String toString() {
-        return "x: "+x+", y: "+y+" , textureName: "+sprite.getTexture().getTextureData();    
+        return "x: "+x+", y: "+y+" , textureName: "+sprite.getTexture().getTextureData()+" id:"+tile.id;    
     }
 }
