@@ -63,7 +63,6 @@ public class TileGrid{
 
     public void setTileDataes(float xCord, float yCord,TileType type) {
         int x_eltolas = 2; int y_eltolas = 6;
-        int tmpX = (int)xCord/TILE_SIZE; int tmpY = (int)yCord/TILE_SIZE;
         map_grid2[((int)(yCord/32)-y_eltolas)][((int)(xCord/32)-x_eltolas)] = 
             new Tile((map_grid2[((int)(yCord/32)-y_eltolas)][((int)(xCord/32)-x_eltolas)].getX()),(map_grid2[((int)(yCord/32)-y_eltolas)][((int)(xCord/32)-x_eltolas)].getY()),TILE_SIZE, type);
     }

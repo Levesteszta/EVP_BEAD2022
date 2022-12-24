@@ -14,7 +14,7 @@ public class myGame {
     public myGame(TileGrid room){
         map = room;
         this.waveManager = new WaveManager(2, map);
-        this.player = new Player(map);
+        this.player = new Player(map,this.waveManager);
         
         //this.tower = new myBaseTower(map, waveManager);
 		//this.tower.setStandingTile(map.getTileDataesByInd(4, 3)); 
