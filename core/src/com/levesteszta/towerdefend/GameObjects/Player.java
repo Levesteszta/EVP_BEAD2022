@@ -34,7 +34,7 @@ public class Player {
         int tmpY = (int)WINDOW_HEIGHT - Gdx.input.getY();
         if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
             if(map.isInCoords(tmpX, tmpY)){
-                myTower tmp = new myBaseTower(map,waves);
+                myTower tmp = new myWaterTower(map,waves);
                 tmp.setStandingTile(map.getTileDataesByCoord(tmpX, tmpY));
                 towers.add(tmp);
             }
@@ -48,7 +48,11 @@ public class Player {
         //map.draw();
     }
 
-    public void getMoney(int plusMoney){
+    public int getMoney() {
+        return this.money;
+    }
+    
+    public void setMoney(int plusMoney){
         this.money += plusMoney;
     }
 

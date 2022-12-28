@@ -11,9 +11,11 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.levesteszta.towerdefend.TowerDefend;
 import com.levesteszta.towerdefend.myGame;
+import com.levesteszta.towerdefend.GameObjects.UI.myCard;
 import com.levesteszta.towerdefend.helpers.Clock;
 
 public class GameStage extends ScreenAdapter {
+
 	private static TileGrid room; 
     private TowerDefend game;
     private AssetManager assetManager;
@@ -32,8 +34,9 @@ public class GameStage extends ScreenAdapter {
     public void show() {
         TowerDefend.batch = new SpriteBatch();
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         myGame = new myGame(room);
+        TowerDefend.batch.setProjectionMatrix(camera.combined);
     }
 
     @Override

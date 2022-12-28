@@ -3,25 +3,27 @@ package com.levesteszta.towerdefend.GameObjects.Towers;
 import static com.levesteszta.towerdefend.helpers.Clock.*;
 import static com.levesteszta.towerdefend.helpers.Artist.*;
 
+import com.badlogic.gdx.math.Vector2;
 import com.levesteszta.towerdefend.GameObjects.Enemies.*;
 import com.levesteszta.towerdefend.MapGen.TileGrid;
-import com.badlogic.gdx.math.Vector2;
 import java.util.ArrayList;
 
-public class myBaseTower extends myTower {
-    private static final int BASE_DAMAGE = 50;
-    private static final int RANGE = 10;
+public class myAirTower extends myTower {
+    private static final int BASE_DAMAGE = 10;
+    private static final int RANGE = 5;
     private static final float COOLDOWN = 5f;
 
     private float timeSinceLastFire;
 
-    public myBaseTower(TileGrid grid, WaveManager enemies) {
+    public myAirTower(TileGrid grid, WaveManager enemies) {
         super(grid, enemies);
-        this.setHp(100);
+        this.setName("Air");
+        this.setHp(-1);
         this.setCost(50);
-        this.setTextures(getTexturesFromArea("air.png",16)[0]);
-        this.setRange(RANGE);
-        this.defaultDmg = BASE_DAMAGE;
+        this.setTowerRange(RANGE);
+        this.setDefaultDmg(BASE_DAMAGE);
+
+        this.setTextures(getTexturesFromArea("towers/air.png",16)[0]);
         this.timeSinceLastFire = BASE_DAMAGE;
         this.bullets = new ArrayList<Bullet>();
 
@@ -32,7 +34,7 @@ public class myBaseTower extends myTower {
     public void attack(Enemy target) {
         timeSinceLastFire += Delta();
         if (timeSinceLastFire > COOLDOWN) {
-            target.takeDamage(defaultDmg);
+            target.takeDamage(BASE_DAMAGE);
             timeSinceLastFire = 0;
             bullets.add(new Bullet(GetSprite("bullet.png"),target, x, y, BASE_DAMAGE));
         }

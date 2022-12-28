@@ -13,13 +13,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.levesteszta.towerdefend.TowerDefend;
 import com.levesteszta.towerdefend.helpers.Artist;
 
 public class StartScreen extends ScreenAdapter {
     private TowerDefend game;
-    
     private Stage stage;
     private AssetManager assetManager;
     private Skin skin;
@@ -47,6 +47,7 @@ public class StartScreen extends ScreenAdapter {
         mainTable = new Table();
         mainTable.setFillParent(true);
 
+        //mainTable.pack();
         stage.addActor(mainTable);
 
 
@@ -84,6 +85,12 @@ public class StartScreen extends ScreenAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         
         stage.act();
+
+        stage.getBatch().begin();
+        stage.getBatch().draw(GetTexture("ui/background.png"), 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+        stage.getBatch().draw(GetTexture("ui/backgroundTitle.png"), 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+        stage.getBatch().end();
+
         stage.draw();
     }
 }

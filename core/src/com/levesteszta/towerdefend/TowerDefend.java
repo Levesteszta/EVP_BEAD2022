@@ -1,17 +1,10 @@
 package com.levesteszta.towerdefend;
 
 import static com.levesteszta.towerdefend.helpers.Artist.*;
-import static com.levesteszta.towerdefend.helpers.Clock.*;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.levesteszta.towerdefend.MapGen.TileGrid;
-import com.levesteszta.towerdefend.helpers.Artist;
 import com.levesteszta.towerdefend.helpers.Clock;
 import com.levesteszta.towerdefend.screens.StartScreen;
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
 
 public class TowerDefend extends Game {
 	public static SpriteBatch batch;
@@ -28,6 +21,6 @@ public class TowerDefend extends Game {
 	@Override
 	public void dispose() {
 		if(batch != null)
-			this.batch.dispose();	// Ne Errorral lépjen ki
+			batch.dispose();	// Ne Errorral lépjen ki
 	}
 }

@@ -6,17 +6,20 @@ import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.SkinLoader;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 
 public class Artist {
     //public static SpriteBatch batch = new SpriteBatch();
     private static AssetManager am = new AssetManager();
-    public static final AssetDescriptor<Skin> SKIN = new AssetDescriptor<Skin>(Gdx.files.internal("uiskin.json"),Skin.class,new SkinLoader.SkinParameter(Gdx.files.internal("uiskin.atlas").path()));
+    public static final AssetDescriptor<Skin> SKIN = new AssetDescriptor<Skin>("ui/uiskin.json",Skin.class,new SkinLoader.SkinParameter("ui/uiskin.atlas"));
     public static final float WINDOW_WIDTH = 997f, WINDOW_HEIGHT = 706f;
     public static int TILE_SIZE = 32;
 
@@ -27,10 +30,37 @@ public class Artist {
         TowerDefend.batch.draw(texture, x, y, size, size);
         TowerDefend.batch.end();
     }
+    public static void DrawTex(Texture texture, float x, float y, float width, float height){
+        texture.bind();
+        Gdx.gl.glActiveTexture(GL20.GL_TEXTURE0);
+        TowerDefend.batch.begin();
+        TowerDefend.batch.draw(texture, x, y, width, height);
+        TowerDefend.batch.end();
+    }
     public static void DrawTex(Sprite sp, float x, float y, float size){
         Gdx.gl.glActiveTexture(GL20.GL_TEXTURE0);
         TowerDefend.batch.begin();
         TowerDefend.batch.draw(sp, x, y, size, size);
+        TowerDefend.batch.end();
+    }
+
+    public static void DrawText(String text, float x, float y, int size){
+        BitmapFont font = new BitmapFont();
+        GlyphLayout glyphLayout = new GlyphLayout(font,text);
+        TowerDefend.batch.begin();
+        font.setColor(Color.WHITE);
+        font.getData().setScale(size,size);
+        font.draw(TowerDefend.batch,glyphLayout, (x) , (y));
+        TowerDefend.batch.end();
+    }
+    public static void DrawTextCenterAllign(String text, float x, float y, float width, int size){
+        BitmapFont font = new BitmapFont();
+        GlyphLayout layout = new GlyphLayout(font,text);
+        TowerDefend.batch.begin();
+        font.setColor(Color.WHITE);
+        font.getData().setScale(size,size);
+        float fontX = x + (width - layout.width)/2;
+        font.draw(TowerDefend.batch,layout, fontX , (y));
         TowerDefend.batch.end();
     }
 

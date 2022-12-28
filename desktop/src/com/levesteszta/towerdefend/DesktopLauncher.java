@@ -14,7 +14,7 @@ public class DesktopLauncher {
 		config.setIdleFPS(60);
 		// Window szépségek
 		config.setTitle("Tower Defend");
-		config.setWindowIcon("money.png");
+		config.setWindowIcon("ui/money.png");
 		// x: 32*31 , y = 22*32
 		// ne lehessen átméretezni, mert . !
 		config.setWindowSizeLimits(992, 704, 992, 704);

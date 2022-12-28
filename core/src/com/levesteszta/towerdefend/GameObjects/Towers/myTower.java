@@ -9,15 +9,16 @@ import static com.levesteszta.towerdefend.helpers.Artist.*;
 import java.util.ArrayList;
 
 public abstract class myTower {
+    private int hp, defaultDmg, range, cost;
+    private String name;
+    private float cd;
     protected float x, y;
     protected TileGrid grid;
     protected Tile standingTile;
     protected Sprite texture;
-    protected int hp, defaultDmg, range, cost;
     protected WaveManager enemies;
     protected Enemy target;
     protected ArrayList<Bullet> bullets;
-
 
     public myTower(TileGrid grid, WaveManager enemies){
         this.grid = grid;
@@ -39,6 +40,27 @@ public abstract class myTower {
     }
     public Tile getStandingTile() {
         return standingTile;
+    }
+    //Name
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getTowerName() {
+        return name;
+    }
+    //Cooldown
+    public float getCooldown() {
+        return cd;
+    }
+    public void getCooldown(float cd) {
+        this.cd = cd;
+    }
+    //DMG
+    public void setDefaultDmg(int defaultDmg) {
+        this.defaultDmg = defaultDmg;
+    }
+    public int getDefaultDmg() {
+        return defaultDmg;
     }
     // Cost -
     public void setCost(int cost) {
@@ -75,10 +97,23 @@ public abstract class myTower {
         this.texture = texture;
     }
     // Range
-    public void setRange(int range) {
+    public void setTowerRange(int range) {
         this.range = range;
     }
-
+    public int setTowerRange() {
+        return range;
+    }
+    public ArrayList<String> getStats(){
+        return new ArrayList<String>(){
+            {
+                add(name);
+                add(String.valueOf(defaultDmg));
+                add(String.valueOf(range));
+                add(String.valueOf(cd));
+                add(String.valueOf(cost));
+            }
+        };
+    }
     public abstract void attack(Enemy target);
     public void update(){};
     public void draw(){
