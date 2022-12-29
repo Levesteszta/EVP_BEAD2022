@@ -12,6 +12,7 @@ public class myIceTower extends myTower {
     private static final int BASE_DAMAGE = 60;
     private static final int RANGE = 5;
     private static final float COOLDOWN = 15f;
+    private static final int COST = 10;
 
     private float timeSinceLastFire;
 
@@ -19,7 +20,7 @@ public class myIceTower extends myTower {
         super(grid, enemies);
         this.setName("Ice");
         this.setHp(-1);
-        this.setCost(50);
+        this.setCost(COST);
         this.setTowerRange(RANGE);
         this.setDefaultDmg(BASE_DAMAGE);
         this.setTextures(getTexturesFromArea("towers/ice.png",16)[0]);
@@ -56,5 +57,18 @@ public class myIceTower extends myTower {
             }
         }
         draw();
+    }
+
+    @Override
+    public ArrayList<String> getStats(){
+        return new ArrayList<String>(){
+            {
+                add("ICE");
+                add(String.valueOf(BASE_DAMAGE));
+                add(String.valueOf(RANGE));
+                add(String.valueOf(COOLDOWN));
+                add(String.valueOf(COST));
+            }
+        };
     }
 }

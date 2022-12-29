@@ -103,22 +103,16 @@ public abstract class myTower {
     public int setTowerRange() {
         return range;
     }
-    public ArrayList<String> getStats(){
-        return new ArrayList<String>(){
-            {
-                add(name);
-                add(String.valueOf(defaultDmg));
-                add(String.valueOf(range));
-                add(String.valueOf(cd));
-                add(String.valueOf(cost));
-            }
-        };
-    }
+
     public abstract void attack(Enemy target);
+    public abstract ArrayList<String> getStats();
     public void update(){};
     public void draw(){
         DrawTex(this.texture, x, y, TILE_SIZE);
     };
+    public static <myTower>myTower cast(Object o, Class<myTower> clazz){
+        return clazz.isInstance(o) ? clazz.cast(o) : null;
+    }
 
     //public void checkInRange(int range){}
 }

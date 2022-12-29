@@ -12,6 +12,7 @@ public class myElectroTower extends myTower {
     private static final int BASE_DAMAGE = 20;
     private static final int RANGE = 9;
     private static final float COOLDOWN = 2f;
+    private static final int COST = 10;
 
     private float timeSinceLastFire;
 
@@ -19,7 +20,7 @@ public class myElectroTower extends myTower {
         super(grid, enemies);
         this.setName("Electro");
         this.setHp(-1);
-        this.setCost(50);
+        this.setCost(COST);
         this.setTowerRange(RANGE);
         this.setDefaultDmg(BASE_DAMAGE);
         this.setTextures(getTexturesFromArea("towers/air.png",16)[0]);
@@ -56,5 +57,17 @@ public class myElectroTower extends myTower {
             }
         }
         draw();
+    }
+    @Override
+    public ArrayList<String> getStats(){
+        return new ArrayList<String>(){
+            {
+                add("ELECTRO");
+                add(String.valueOf(BASE_DAMAGE));
+                add(String.valueOf(RANGE));
+                add(String.valueOf(COOLDOWN));
+                add(String.valueOf(COST));
+            }
+        };
     }
 }

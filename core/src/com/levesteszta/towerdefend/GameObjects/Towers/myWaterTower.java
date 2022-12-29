@@ -12,6 +12,7 @@ public class myWaterTower extends myTower {
     private static final int BASE_DAMAGE = 5;
     private static final int RANGE = 10;
     private static final float COOLDOWN = 3f;
+    private static final int COST = 10;
 
     private float timeSinceLastFire;
 
@@ -19,7 +20,7 @@ public class myWaterTower extends myTower {
         super(grid, enemies);
         this.setName("Water");
         this.setHp(-1);
-        this.setCost(50);
+        this.setCost(COST);
         this.setTowerRange(RANGE);
         this.setDefaultDmg(BASE_DAMAGE);
         this.setTextures(getTexturesFromArea("towers/water.png",16)[0]);
@@ -56,5 +57,18 @@ public class myWaterTower extends myTower {
             }
         }
         draw();
+    }
+
+    @Override
+    public ArrayList<String> getStats(){
+        return new ArrayList<String>(){
+            {
+                add("WATER");
+                add(String.valueOf(BASE_DAMAGE));
+                add(String.valueOf(RANGE));
+                add(String.valueOf(COOLDOWN));
+                add(String.valueOf(COST));
+            }
+        };
     }
 }

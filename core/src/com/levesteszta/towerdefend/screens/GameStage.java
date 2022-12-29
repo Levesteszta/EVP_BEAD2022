@@ -9,12 +9,13 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.levesteszta.towerdefend.TowerDefend;
 import com.levesteszta.towerdefend.myGame;
 import com.levesteszta.towerdefend.GameObjects.UI.myCard;
 import com.levesteszta.towerdefend.helpers.Clock;
 
-public class GameStage extends ScreenAdapter {
+public class GameStage extends ScreenAdapter{
 
 	private static TileGrid room; 
     private TowerDefend game;
@@ -31,12 +32,19 @@ public class GameStage extends ScreenAdapter {
     }
     
     @Override
-    public void show() {
-        TowerDefend.batch = new SpriteBatch();
+    public void show(){
+        try{
+            TowerDefend.batch = new SpriteBatch();
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         myGame = new myGame(room);
         TowerDefend.batch.setProjectionMatrix(camera.combined);
+        }catch(Throwable t){
+            if (t instanceof RuntimeException)
+                    throw (RuntimeException)t;
+                else
+                    throw new GdxRuntimeException(t);
+        }
     }
 
     @Override

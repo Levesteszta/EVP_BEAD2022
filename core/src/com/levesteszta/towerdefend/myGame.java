@@ -17,19 +17,20 @@ public class myGame {
     private WaveManager waveManager;
     private Player player;
     private ArrayList<myCard> cards;
-    private myTower tower;
+    //private myTower tower;
 
-    private void makeCards(){
+    private void makeCards() throws Throwable{
         this.cards = new ArrayList<myCard>(6);
-        this.cards.add(new myCard(myAirTower.class));
-        this.cards.add(new myCard(myFireTower.class));
-        this.cards.add(new myCard(myWaterTower.class));
-        this.cards.add(new myCard(myIceTower.class));
-        this.cards.add(new myCard(myElectroTower.class));
-        this.cards.add(new myCard(myAirTower.class));
+        System.out.println("itt van a gond? nem");
+        this.cards.add(new myCard((new myAirTower(map, waveManager).getStats())));
+        this.cards.add(new myCard((new myElectroTower(map, waveManager).getStats())));
+        this.cards.add(new myCard((new myFireTower(map, waveManager).getStats())));
+        this.cards.add(new myCard((new myIceTower(map, waveManager).getStats())));
+        this.cards.add(new myCard((new myWaterTower(map, waveManager).getStats())));
+        this.cards.add(new myCard((new myAirTower(map, waveManager).getStats())));
     }
 
-    public myGame(TileGrid room){
+    public myGame(TileGrid room) throws Throwable{
         map = room;
         this.waveManager = new WaveManager(2, map);
         this.player = new Player(map,this.waveManager);
@@ -43,6 +44,7 @@ public class myGame {
         map.draw();
         this.player.update();
         this.waveManager.update();
+        
         for(myCard card : this.cards)
             card.draw((int)(this.cards.indexOf(card)*card.getWidth()),0);
         //this.tower.update();

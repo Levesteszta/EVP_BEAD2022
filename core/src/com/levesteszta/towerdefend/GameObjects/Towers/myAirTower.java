@@ -12,6 +12,8 @@ public class myAirTower extends myTower {
     private static final int BASE_DAMAGE = 10;
     private static final int RANGE = 5;
     private static final float COOLDOWN = 5f;
+    private static final int COST = 50;
+    private static final String textureName = "air.png";
 
     private float timeSinceLastFire;
 
@@ -19,11 +21,11 @@ public class myAirTower extends myTower {
         super(grid, enemies);
         this.setName("Air");
         this.setHp(-1);
-        this.setCost(50);
+        this.setCost(COST);
         this.setTowerRange(RANGE);
         this.setDefaultDmg(BASE_DAMAGE);
 
-        this.setTextures(getTexturesFromArea("towers/air.png",16)[0]);
+        this.setTextures(getTexturesFromArea("towers/"+textureName,16)[0]);
         this.timeSinceLastFire = BASE_DAMAGE;
         this.bullets = new ArrayList<Bullet>();
 
@@ -57,5 +59,19 @@ public class myAirTower extends myTower {
             }
         }
         draw();
+    }
+
+    @Override
+    public ArrayList<String> getStats(){
+        return new ArrayList<String>(){
+            {
+                add("AIR");
+                add(textureName);
+                add(String.format("%-15s %-5d","Damage:", BASE_DAMAGE).toString());
+                add(String.format("%-15s %-5d","Range:", RANGE).toString());
+                add(String.format("%-15s %-5.0f","CD:", COOLDOWN).toString());
+                add(String.format("%-15s %-5d", "Cost:", COST).toString());
+            }
+        };
     }
 }
