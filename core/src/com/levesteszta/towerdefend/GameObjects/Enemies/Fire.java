@@ -7,7 +7,7 @@ import com.levesteszta.towerdefend.MapGen.TileGrid;
 public class Fire extends Enemy {
     static final char TYPE = 'f';
     public Fire(TileGrid grid){
-        super(grid,32,150,20, getTexturesFromArea("enemies/ellenfel2.png",16));
+        super(grid,32,150,20,20, getTexturesFromArea("enemies/ellenfel2.png",16));
     }
     //public void update(){};
     //public void draw(){};

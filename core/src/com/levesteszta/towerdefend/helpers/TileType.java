@@ -24,7 +24,8 @@ public enum TileType {
     ROAD4(Artist.getTexturesFromArea("data/terrain.png",16)[16],1); // Út
     
     public Sprite sprite;
-    public int id;  //0-Fold, 1-UT 2-amire nem lehet rakni föld
+    public int id;  //0-Fold, 1-UT 2-amire nem lehet rakni föld 3-ATTACK
+    public boolean attackable = false;
     private static final Random RANDOM = new Random();
     private static final int SIZE = TileType.values().length;
     TileType(Sprite sprite,int id){
@@ -40,6 +41,10 @@ public enum TileType {
     public static TileType getRandomRoad(){
         int pick = RANDOM.nextInt(SIZE-11)+11;
         return TileType.values()[pick];
+    }
+
+    public void setAttackable(boolean attackable) {
+        this.attackable = attackable;
     }
 
     public static TileType[] getTypes(){

@@ -12,7 +12,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.levesteszta.towerdefend.TowerDefend;
 import com.levesteszta.towerdefend.myGame;
-import com.levesteszta.towerdefend.GameObjects.UI.myCard;
 import com.levesteszta.towerdefend.helpers.Clock;
 
 public class GameStage extends ScreenAdapter{

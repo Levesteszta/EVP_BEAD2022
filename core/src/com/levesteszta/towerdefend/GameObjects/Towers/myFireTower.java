@@ -13,6 +13,7 @@ public class myFireTower extends myTower {
     private static final int RANGE = 4;
     private static final float COOLDOWN = 8f;
     private static final int COST = 10;
+    private static final String textureName = "fire.png";
 
     private float timeSinceLastFire;
 
@@ -23,7 +24,7 @@ public class myFireTower extends myTower {
         this.setCost(COST);
         this.setTowerRange(RANGE);
         this.setDefaultDmg(BASE_DAMAGE);
-        this.setTextures(getTexturesFromArea("towers/fire.png",16)[0]);
+        this.setTextures(getTexturesFromArea("towers/"+textureName,16)[0]);
         this.timeSinceLastFire = BASE_DAMAGE;
         this.bullets = new ArrayList<Bullet>();
 
@@ -63,7 +64,8 @@ public class myFireTower extends myTower {
     public ArrayList<String> getStats(){
         return new ArrayList<String>(){
             {
-                add("FIRE");
+                add("Fire");
+                add(textureName);
                 add(String.valueOf(BASE_DAMAGE));
                 add(String.valueOf(RANGE));
                 add(String.valueOf(COOLDOWN));

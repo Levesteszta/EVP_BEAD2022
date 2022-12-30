@@ -28,6 +28,9 @@ public class Tile {
     public void setTile(TileType tile) {
         this.tile = tile;
     }
+    public void setTileType(boolean bum) {
+        tile.setAttackable(bum);
+    }
 
     public float getX() {
         return x;

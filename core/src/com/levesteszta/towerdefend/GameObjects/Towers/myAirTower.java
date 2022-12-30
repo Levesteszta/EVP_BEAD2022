@@ -65,12 +65,12 @@ public class myAirTower extends myTower {
     public ArrayList<String> getStats(){
         return new ArrayList<String>(){
             {
-                add("AIR");
+                add("Air");
                 add(textureName);
-                add(String.format("%-15s %-5d","Damage:", BASE_DAMAGE).toString());
-                add(String.format("%-15s %-5d","Range:", RANGE).toString());
-                add(String.format("%-15s %-5.0f","CD:", COOLDOWN).toString());
-                add(String.format("%-15s %-5d", "Cost:", COST).toString());
+                add(String.valueOf(BASE_DAMAGE));
+                add(String.valueOf(RANGE));
+                add(String.valueOf(COOLDOWN));
+                add(String.valueOf(COST));
             }
         };
     }

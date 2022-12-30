@@ -2,29 +2,32 @@ package com.levesteszta.towerdefend.GameObjects.Enemies;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Interpolation;
+import com.levesteszta.towerdefend.GameObjects.Player;
 import com.levesteszta.towerdefend.MapGen.*;
 
 import static com.levesteszta.towerdefend.helpers.Artist.*;
 
 // Ős
 public abstract class Enemy {
-    private float x, y; 
+    private float x, y, health, startHealth; 
     private static int ENEMY_ID = 0;
     private int[] direction;
     private float[] oldDir = {0f, 0f} , newDir;
     protected int id;
     protected static float SPEED = 0.1f;        //Jelenleg a mozgás sebessége adott mindenkinél, egy multiplifáció hogy ne szaladjon ki , inkább csak sétáljon nyugodtan
     protected Tile startTile;
-    protected int size, health, damage;           //méret, Életerő, sebzés;                      
+    protected int size, prize, damage;           //méret, Életerő, sebzés;                      
     protected Sprite[] textures;                  //Textura, késöbbiekben ez Sprite-ra cserélendő
     protected boolean first = true;
     protected TileGrid grid;
 
     protected boolean flagedToDead = false;
 
-    Enemy(TileGrid grid, int size ,int health, int damage, Sprite[] textures){
+    Enemy(TileGrid grid, int size ,float health,int prize, int damage, Sprite[] textures){
         this.id = ENEMY_ID++;
+        this.prize = prize;
         this.health = health;
+        this.startHealth = health;
         this.damage = damage;
         this.startTile = grid.getTileDataesByInd(grid.getStartIndex(), 0);
         this.x = startTile.getX();
@@ -60,13 +63,18 @@ public abstract class Enemy {
             }
         }
 
-        if(Math.round(this.x) >= Math.round(grid.getWidth()*TILE_SIZE)){
+        if(Math.round(this.x) > Math.round(grid.getWidth()*TILE_SIZE)){
+            Player.takeDamage(damage);
             Die();
         }
     }
 
     public void draw(){
+        float hpPercent = health / startHealth;
         DrawTex(this.textures[0], x, y, TILE_SIZE);
+        DrawTex(GetTexture("ui/healthbar/hpbg.png"), x, y+32, TILE_SIZE,6);
+        DrawTex(GetTexture("ui/healthbar/hpfill.png"), x, y+32, TILE_SIZE * hpPercent,6);
+        DrawTex(GetTexture("ui/healthbar/hpborder.png"), x, y+32, TILE_SIZE,6);
     };
 
     private int[] FindNextRoadTile(Tile now){
@@ -109,19 +117,21 @@ public abstract class Enemy {
     }
 
     //getter-setter methods
-    public int getHp(){
+    public float getHp(){
         return this.health;
     }
     protected void setHp(int hp){
         this.health = hp;
 
-        if(this.health <= 0)
+        if(this.health <= 0){
+            Player.setMoney(prize);
             Die();
+        }
     }
 
     public void takeDamage(int towerDamageValue){
         System.out.println("Kaptam én:"+id+" , egy sallert: "+towerDamageValue);
-        this.setHp(this.getHp() - towerDamageValue);
+        this.setHp((int)this.getHp()-towerDamageValue);
     }
 
     public boolean isDead(){

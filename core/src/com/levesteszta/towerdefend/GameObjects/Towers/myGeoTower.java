@@ -8,19 +8,19 @@ import com.levesteszta.towerdefend.GameObjects.Enemies.*;
 import com.levesteszta.towerdefend.MapGen.TileGrid;
 import java.util.ArrayList;
 
-public class myElectroTower extends myTower {
-    private static final int BASE_DAMAGE = 20;
-    private static final int RANGE = 9;
-    private static final float COOLDOWN = 2f;
+public class myGeoTower extends myTower {
+    private static final int BASE_DAMAGE = 0;
+    private static final int RANGE = 0;
+    private static final float COOLDOWN = 0f;
     private static final int COST = 10;
-    private static final String textureName = "electro.png";
+    private static final String textureName = "earth.png";
 
     private float timeSinceLastFire;
 
-    public myElectroTower(TileGrid grid, WaveManager enemies) {
+    public myGeoTower(TileGrid grid, WaveManager enemies) {
         super(grid, enemies);
-        this.setName("Electro");
-        this.setHp(-1);
+        this.setName("Earth");
+        this.setHp(100);
         this.setCost(COST);
         this.setTowerRange(RANGE);
         this.setDefaultDmg(BASE_DAMAGE);
@@ -59,11 +59,12 @@ public class myElectroTower extends myTower {
         }
         draw();
     }
+
     @Override
     public ArrayList<String> getStats(){
         return new ArrayList<String>(){
             {
-                add("Electro");
+                add("Earth");
                 add(textureName);
                 add(String.valueOf(BASE_DAMAGE));
                 add(String.valueOf(RANGE));

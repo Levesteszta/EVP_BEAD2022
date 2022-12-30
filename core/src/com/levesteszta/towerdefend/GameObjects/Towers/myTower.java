@@ -27,16 +27,32 @@ public abstract class myTower {
     // Tile -
     public void setStandingTile(Tile standingTile) {
         this.standingTile = standingTile;
-        if(this.standingTile.getTile().id == 0){
-            this.standingTile = standingTile;
-            this.x = standingTile.getX();
-            this.y = standingTile.getY();
+        if(this.name != "Earth"){
+            if(this.standingTile.getTile().id == 0){
+                this.standingTile = standingTile;
+                this.x = standingTile.getX();
+                this.y = standingTile.getY();
+            }
+            else {
+                this.standingTile = null;
+                this.x = -1; this.y = -1;
+                System.out.println("Nem jó a hely");
+            }
         }
-        else {
-            this.standingTile = null;
-            this.x = -1; this.y = -1;
-            System.out.println("Nem jó a hely");
+        if(this.name == "Earth"){
+            if(this.standingTile.getTile().id == 1){
+                this.standingTile = standingTile;
+                this.x = standingTile.getX();
+                this.y = standingTile.getY();
+                standingTile.setTileType(true);
+            }
+            else {
+                this.standingTile = null;
+                this.x = -1; this.y = -1;
+                System.out.println("Nem jó a hely");
+            }
         }
+        
     }
     public Tile getStandingTile() {
         return standingTile;
@@ -110,9 +126,5 @@ public abstract class myTower {
     public void draw(){
         DrawTex(this.texture, x, y, TILE_SIZE);
     };
-    public static <myTower>myTower cast(Object o, Class<myTower> clazz){
-        return clazz.isInstance(o) ? clazz.cast(o) : null;
-    }
-
     //public void checkInRange(int range){}
 }
