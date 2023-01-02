@@ -8,6 +8,7 @@ import com.badlogic.gdx.Game;
 
 public class TowerDefend extends Game {
 	public static SpriteBatch batch;
+	public static TowerDefend tdGame;
 	public static Game game;
 
 	@Override

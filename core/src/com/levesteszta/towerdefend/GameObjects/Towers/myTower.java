@@ -1,7 +1,6 @@
 package com.levesteszta.towerdefend.GameObjects.Towers;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.utils.Array;
 import com.levesteszta.towerdefend.GameObjects.Enemies.*;
 import com.levesteszta.towerdefend.MapGen.*;
 
@@ -10,13 +9,18 @@ import static com.levesteszta.towerdefend.helpers.Artist.*;
 import java.util.ArrayList;
 
 public abstract class myTower {
+    //Tower Stat
     private int hp, defaultDmg, range, cost;
     private String name;
     private float cd;
+
+    //Artist Data
     protected float x, y;
     protected TileGrid grid;
     protected Tile standingTile;
     protected Sprite texture;
+
+    //Attacking Data
     protected WaveManager waves;
     protected ArrayList<Enemy> enemies;
     protected Enemy target;
