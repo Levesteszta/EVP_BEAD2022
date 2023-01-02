@@ -41,10 +41,9 @@ public class GameOverScreen extends ScreenAdapter {
         //mainTable.pack();
         TowerDefend.stage.addActor(gameoverTable);
         Gdx.input.setInputProcessor(TowerDefend.stage);
-        BackButton("Back").addListener(new ClickListener() {
+        BackButton("Back to Menu").addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("Back to the lobby...");
                 gameoverTable.clear();
                 GameOverScreen.this.game.setScreen(new StartScreen(game, assetManager));
             }

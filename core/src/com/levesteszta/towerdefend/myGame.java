@@ -1,12 +1,10 @@
 package com.levesteszta.towerdefend;
 
-import static com.levesteszta.towerdefend.helpers.Artist.*;
-
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.levesteszta.towerdefend.GameObjects.Player;
 import com.levesteszta.towerdefend.GameObjects.Enemies.WaveManager;
 import com.levesteszta.towerdefend.MapGen.TileGrid;
+import com.levesteszta.towerdefend.helpers.Clock;
 
 public class myGame extends ScreenAdapter {
     private static TileGrid map;
@@ -23,7 +21,7 @@ public class myGame extends ScreenAdapter {
     public void update(){
         if(player.isGameOver())
             isGameOver = true;
-        else{
+        if(!Clock.isPaused()){
             map.draw();
             player.update();
             waveManager.update();

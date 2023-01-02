@@ -41,7 +41,7 @@ public class AboutScreen extends ScreenAdapter {
         //mainTable.pack();
         TowerDefend.stage.addActor(aboutTable);
         Gdx.input.setInputProcessor(TowerDefend.stage);
-        BackButton("Back").addListener(new ClickListener() {
+        BackButton("Back to Menu").addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Back to the lobby...");

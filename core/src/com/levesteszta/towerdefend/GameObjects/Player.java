@@ -10,7 +10,9 @@ import com.levesteszta.towerdefend.GameObjects.Towers.*;
 import com.levesteszta.towerdefend.GameObjects.UI.DeckofCard;
 import com.levesteszta.towerdefend.GameObjects.UI.myCard;
 import com.levesteszta.towerdefend.MapGen.*;
+import com.levesteszta.towerdefend.helpers.Clock;
 import com.levesteszta.towerdefend.helpers.TileType;
+import com.levesteszta.towerdefend.screens.GameStage;
 
 public class Player {
     private static TileGrid map;
@@ -23,7 +25,7 @@ public class Player {
     private int selectedTowerPrice = 0;
 
     public Player(TileGrid room, WaveManager waves) throws Throwable{
-        health = 10;
+        health = 100;
         money = 50;
         startHealth = health;
         map = room;
@@ -33,6 +35,11 @@ public class Player {
     }
 
     public void update(){
+
+        if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
+            Clock.Stop();
+        }
+
         //TowerSelection Top-Left Corner 
         DrawText("Selected Tower: "+selectedTower, 15, WINDOW_HEIGHT-15, 1);
         
@@ -93,7 +100,9 @@ public class Player {
                 myCard tmp = deck.getInCoord(tmpX, tmpY);
                 selectedTower = tmp.getTowerTypeName();
                 selectedTowerPrice = tmp.getCost(); 
-            }else System.out.println("Nem nyomtál kártyát");
+            }else {
+                
+            }
         }
 
     }

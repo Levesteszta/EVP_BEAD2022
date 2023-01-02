@@ -58,4 +58,8 @@ public class Clock {
     public static void Play(){
         paused = false;
     }
+
+    public static boolean isPaused() {
+        return paused;
+    }
 }
