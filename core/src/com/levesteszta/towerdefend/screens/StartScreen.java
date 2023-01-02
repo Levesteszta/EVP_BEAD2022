@@ -12,13 +12,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.levesteszta.towerdefend.TowerDefend;
 import com.levesteszta.towerdefend.helpers.Artist;
 
 public class StartScreen extends ScreenAdapter {
     private TowerDefend game;
-    private Stage stage;
     private AssetManager assetManager;
     private Skin skin;
     private Table mainTable;
@@ -38,17 +36,14 @@ public class StartScreen extends ScreenAdapter {
 
     @Override
     public void show() {    //ugyanolyan mint a create, csak ez 1x fut le
-        stage = new Stage(new FitViewport(WINDOW_WIDTH, WINDOW_HEIGHT));
-        stage.clear();
-
         mainTable = new Table();
         mainTable.setFillParent(true);
 
         //mainTable.pack();
-        stage.addActor(mainTable);
+        TowerDefend.stage.addActor(mainTable);
 
 
-        Gdx.input.setInputProcessor(stage);
+        Gdx.input.setInputProcessor(TowerDefend.stage);
 
         addButton("Play").addListener(new ClickListener() {
             @Override
@@ -82,13 +77,13 @@ public class StartScreen extends ScreenAdapter {
         Gdx.gl.glClearColor(0f, 0f, 0f, 0f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         
-        stage.act();
+        TowerDefend.stage.act();
 
-        stage.getBatch().begin();
-        stage.getBatch().draw(GetTexture("ui/background.png"), 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
-        stage.getBatch().draw(GetTexture("ui/backgroundTitle.png"), 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
-        stage.getBatch().end();
+        TowerDefend.stage.getBatch().begin();
+        TowerDefend.stage.getBatch().draw(GetTexture("ui/background.png"), 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+        TowerDefend.stage.getBatch().draw(GetTexture("ui/backgroundTitle.png"), 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+        TowerDefend.stage.getBatch().end();
 
-        stage.draw();
+        TowerDefend.stage.draw();
     }
 }

@@ -14,13 +14,13 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.levesteszta.towerdefend.TowerDefend;
 import com.levesteszta.towerdefend.helpers.Artist;
 
-public class AboutScreen extends ScreenAdapter {
+public class GameOverScreen extends ScreenAdapter {
     private TowerDefend game;
     private AssetManager assetManager;
     private Skin skin;
-    private Table aboutTable;
+    private Table gameoverTable;
 
-    public AboutScreen(TowerDefend game, AssetManager assetManager){
+    public GameOverScreen(TowerDefend game, AssetManager assetManager){
         this.assetManager = assetManager;
         this.game = game;
         skin = assetManager.get(Artist.SKIN);
@@ -28,25 +28,25 @@ public class AboutScreen extends ScreenAdapter {
 
     private TextButton BackButton(String text){
         TextButton button = new TextButton(text, skin);
-        aboutTable.add(button).width(WINDOW_WIDTH/2).height(80).padBottom(0).padTop(WINDOW_HEIGHT-140);
-        aboutTable.row();
+        gameoverTable.add(button).width(WINDOW_WIDTH/2).height(80).padBottom(0).padTop(WINDOW_HEIGHT-140);
+        gameoverTable.row();
         return button;
     }
 
     @Override
     public void show() {
-        aboutTable = new Table();
-        aboutTable.setFillParent(true);
+        gameoverTable = new Table();
+        gameoverTable.setFillParent(true);
 
         //mainTable.pack();
-        TowerDefend.stage.addActor(aboutTable);
+        TowerDefend.stage.addActor(gameoverTable);
         Gdx.input.setInputProcessor(TowerDefend.stage);
         BackButton("Back").addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Back to the lobby...");
-                aboutTable.clear();
-                AboutScreen.this.game.setScreen(new StartScreen(game, assetManager));
+                gameoverTable.clear();
+                GameOverScreen.this.game.setScreen(new StartScreen(game, assetManager));
             }
         });
         
@@ -59,7 +59,7 @@ public class AboutScreen extends ScreenAdapter {
 
         TowerDefend.stage.act();
         TowerDefend.stage.getBatch().begin();
-        TowerDefend.stage.getBatch().draw(GetTexture("ui/aboutBackground.png"), 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+        TowerDefend.stage.getBatch().draw(GetTexture("ui/GAMEOVERbackground.png"), 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
         TowerDefend.stage.getBatch().end();
         TowerDefend.stage.draw();
     }

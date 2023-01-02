@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.levesteszta.towerdefend.GameObjects.Enemies.Enemy;
 import com.levesteszta.towerdefend.GameObjects.Enemies.WaveManager;
 import com.levesteszta.towerdefend.GameObjects.Towers.*;
 import com.levesteszta.towerdefend.GameObjects.UI.DeckofCard;
@@ -18,14 +17,13 @@ public class Player {
     private static float health, startHealth; 
     private static int money;
     private static ArrayList<myTower> towers;
-    private ArrayList<Enemy> enemies;
     private String selectedTower = "";
     private WaveManager waves;
     private DeckofCard deck;
     private int selectedTowerPrice = 0;
 
     public Player(TileGrid room, WaveManager waves) throws Throwable{
-        health = 100;
+        health = 10;
         money = 50;
         startHealth = health;
         map = room;
@@ -43,7 +41,7 @@ public class Player {
         DrawTex(GetTexture("ui/healthbar/hpbg.png"), (WINDOW_WIDTH/2)-(TILE_SIZE*3), WINDOW_HEIGHT-40, (TILE_SIZE*6),25);
         DrawTex(GetTexture("ui/healthbar/hpfill.png"), (WINDOW_WIDTH/2)-(TILE_SIZE*3), WINDOW_HEIGHT-40, (TILE_SIZE*6) * hpPercent,25);
         DrawTex(GetTexture("ui/healthbar/hpborder.png"), (WINDOW_WIDTH/2)-(TILE_SIZE*3), WINDOW_HEIGHT-40, (TILE_SIZE*6),25);
-        DrawTextCenterAllign(String.valueOf((int)(hpPercent*100)), (WINDOW_WIDTH/2)-(TILE_SIZE*3)-2, WINDOW_HEIGHT-22,(TILE_SIZE*6), 1);
+        DrawTextCenterAllign(String.valueOf((int)(hpPercent*100))+" %", (WINDOW_WIDTH/2)-(TILE_SIZE*3)-2, WINDOW_HEIGHT-22,(TILE_SIZE*6), 1);
         
         //Money Top-Right
         DrawTex(GetTexture("ui/money.png"), WINDOW_WIDTH-100, WINDOW_HEIGHT-25-5, 25);
@@ -91,11 +89,10 @@ public class Player {
                     }
                 }
             }
-            if(myCard.isClicked(tmpX, tmpY)){{
+            if(myCard.isClicked(tmpX, tmpY)){
                 myCard tmp = deck.getInCoord(tmpX, tmpY);
                 selectedTower = tmp.getTowerTypeName();
                 selectedTowerPrice = tmp.getCost(); 
-            }
             }else System.out.println("Nem nyomtál kártyát");
         }
 

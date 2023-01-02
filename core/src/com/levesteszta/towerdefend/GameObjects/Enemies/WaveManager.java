@@ -17,8 +17,8 @@ public class WaveManager {
     private Wave currentWave;
     TileGrid grid;
 
-    public WaveManager(int db, TileGrid grid){
-        this.maxdb = db;
+    public WaveManager(TileGrid grid){
+        //this.maxdb = db;
         this.grid = grid;
         this.lastSpawnTime = 0f;
         this.RANDOM_MAX_TICK = 5;
@@ -32,20 +32,16 @@ public class WaveManager {
         } 
         else{
             lastSpawnTime += Delta();
-            if(db <= maxdb){
-                if(lastSpawnTime > 10f){
-                    lastSpawnTime = 0f;
-                    newWave();
-                }
-                else {
-                    for(myTower x : Player.getTower()){
-                        x.clearBullets();
-                    }
-                    System.out.println("Várni kell még");
-                }
+            if(lastSpawnTime > 10f){
+                lastSpawnTime = 0f;
+                newWave();
             }
-            // TODO: WinScreen?
-            else System.out.println("Vége...");
+            else {
+                for(myTower x : Player.getTower()){
+                    x.clearBullets();
+                }
+                System.out.println("Várni kell még");
+            }
         }
     }
 
