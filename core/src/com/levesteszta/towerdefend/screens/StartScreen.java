@@ -67,6 +67,8 @@ public class StartScreen extends ScreenAdapter {
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Exit...");
                 mainTable.clear();
+                StartScreen.this.game.dispose();
+                TowerDefend.game.dispose();
                 Gdx.app.exit();
             }
         });

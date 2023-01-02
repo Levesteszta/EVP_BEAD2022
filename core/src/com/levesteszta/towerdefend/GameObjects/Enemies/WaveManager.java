@@ -12,7 +12,9 @@ public class WaveManager {
     private static Random RANDOM = new Random();
     private static int db = 0;
     private float lastSpawnTime;
-    private int maxdb, RANDOM_MAX_TICK;
+    private int maxdb, RANDOM_MAX_TICK; 
+    //the maxdb is a variable that i initially used for testing but i just commented it out 
+    // ,because it can still be modified in the code to be an endpoint of the game
 
     private Wave currentWave;
     TileGrid grid;
@@ -40,7 +42,7 @@ public class WaveManager {
                 for(myTower x : Player.getTower()){
                     x.clearBullets();
                 }
-                System.out.println("Várni kell még");
+                //System.out.println("Várni kell még");
             }
         }
     }
@@ -48,7 +50,8 @@ public class WaveManager {
     private void newWave(){
         if(db%2==0 && db >= RANDOM_MAX_TICK+2)
             this.RANDOM_MAX_TICK += 2;
-        int waveEnemiesCount = 1 + RANDOM.nextInt(RANDOM_MAX_TICK); // minValue + rand.nextInt(maxValue(-1)) 1 - MAX
+        int randomMinValue = (0 + (int)(RANDOM.nextInt(RANDOM_MAX_TICK)/2) );// (then 0 - plusTick/2) just for fun
+        int waveEnemiesCount = (1+randomMinValue + RANDOM.nextInt(RANDOM_MAX_TICK)); // minValue + rand.nextInt(maxValue(-1)) 1 - MAX
         this.currentWave = new Wave(waveEnemiesCount, 5f, grid);
         db++;
     }
