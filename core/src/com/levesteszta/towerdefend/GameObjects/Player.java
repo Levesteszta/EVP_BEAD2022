@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.levesteszta.towerdefend.GameObjects.Enemies.Enemy;
 import com.levesteszta.towerdefend.GameObjects.Enemies.WaveManager;
 import com.levesteszta.towerdefend.GameObjects.Towers.*;
 import com.levesteszta.towerdefend.GameObjects.UI.DeckofCard;
@@ -16,9 +17,10 @@ public class Player {
     private static TileGrid map;
     private static float health, startHealth; 
     private static int money;
+    private static ArrayList<myTower> towers;
+    private ArrayList<Enemy> enemies;
     private String selectedTower = "";
     private WaveManager waves;
-    private ArrayList<myTower> towers;
     private DeckofCard deck;
     private int selectedTowerPrice = 0;
 
@@ -27,7 +29,7 @@ public class Player {
         money = 50;
         startHealth = health;
         map = room;
-        this.towers = new ArrayList<myTower>();
+        towers = new ArrayList<myTower>();
         this.waves = waves;
         deck = new DeckofCard(room, waves);
     }
@@ -47,8 +49,9 @@ public class Player {
         DrawTex(GetTexture("ui/money.png"), WINDOW_WIDTH-100, WINDOW_HEIGHT-25-5, 25);
         DrawText(String.valueOf(money)+" $", WINDOW_WIDTH-60, WINDOW_HEIGHT-13, 1);
 
-        for(myTower tower : this.towers){
+        for(myTower tower : towers){
             tower.update();
+            tower.updateEnemyList(waves.getCurrentWave().getEnemies());
         }
         deck.draw();
 
@@ -80,8 +83,9 @@ public class Player {
                     }
                     if(tmp != null){
                         tmp.setStandingTile(map.getTileDataesByCoord(tmpX, tmpY));
-                        if(tmp.getStandingTile() != null){
+                        if(tmp.getStandingTile() != null && tmp.getStandingTile().getIsTower() == false){
                             costMoney(selectedTowerPrice);
+                            map.getTileDataesByCoord(tmpX, tmpY).setIsTower(true);
                             towers.add(tmp);
                         }
                     }
@@ -91,7 +95,6 @@ public class Player {
                 myCard tmp = deck.getInCoord(tmpX, tmpY);
                 selectedTower = tmp.getTowerTypeName();
                 selectedTowerPrice = tmp.getCost(); 
-                System.out.println("Prie:"+selectedTowerPrice);
             }
             }else System.out.println("Nem nyomtál kártyát");
         }
@@ -126,6 +129,10 @@ public class Player {
             health -= damage;
         else
             health = -1;
+    }
+
+    public static ArrayList<myTower> getTower(){
+        return towers;
     }
 
     public boolean isGameOver() {

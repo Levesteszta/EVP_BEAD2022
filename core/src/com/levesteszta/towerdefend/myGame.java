@@ -6,21 +6,21 @@ import com.levesteszta.towerdefend.MapGen.TileGrid;
 
 public class myGame {
     private static TileGrid map;
-    private WaveManager waveManager;
     private Player player;
+    private WaveManager waveManager;
     //private myTower tower;
 
     public myGame(TileGrid room) throws Throwable{
         map = room;
         this.waveManager = new WaveManager(2, map);
-        this.player = new Player(map,this.waveManager);
+        player = new Player(map,this.waveManager);
         //this.tower = new myBaseTower(map, waveManager);
 		//this.tower.setStandingTile(map.getTileDataesByInd(4, 3)); 
     }
 
     public void update(){
         map.draw();
-        this.player.update();
+        player.update();
         this.waveManager.update();
         //this.tower.update();
     }

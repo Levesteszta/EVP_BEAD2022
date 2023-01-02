@@ -32,31 +32,12 @@ public class myGeoTower extends myTower {
     }
 
     @Override
-    public void attack(Enemy target) {
-        timeSinceLastFire += Delta();
-        if (timeSinceLastFire > COOLDOWN) {
-            target.takeDamage(BASE_DAMAGE);
-            timeSinceLastFire = 0;
-            bullets.add(new Bullet(GetSprite("bullet.png"),target, x, y, BASE_DAMAGE));
-        }
+    public void attack() {
 
-        for(Bullet bullet : bullets) {
-            bullet.update();
-        }
-
-        //draw();
     }
 
     @Override
     public void update() {
-        if(enemies.getCurrentWave().getEnemies().size() > 0) {
-            Enemy enemy = enemies.getCurrentWave().getNextAlive();
-            if(enemy != null) {
-                if(getRange(new Vector2(this.x, this.y), new Vector2(enemy.getX(), enemy.getY())) <= (TILE_SIZE * RANGE)){
-                    this.attack(enemy);
-                }
-            }
-        }
         draw();
     }
 

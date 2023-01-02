@@ -34,10 +34,10 @@ public class GameStage extends ScreenAdapter{
     public void show(){
         try{
             TowerDefend.batch = new SpriteBatch();
-        camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        myGame = new myGame(room);
-        TowerDefend.batch.setProjectionMatrix(camera.combined);
+            camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+            camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+            myGame = new myGame(room);
+            TowerDefend.batch.setProjectionMatrix(camera.combined);
         }catch(Throwable t){
             if (t instanceof RuntimeException)
                     throw (RuntimeException)t;

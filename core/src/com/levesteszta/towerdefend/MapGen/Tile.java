@@ -8,6 +8,7 @@ public class Tile {
     private float x, y, size;
     private TileType tile;
     private Sprite sprite;
+    private boolean isTower = false;
 
     public Tile(float x, float y, float size, TileType tile){
         this.x = x;
@@ -30,6 +31,14 @@ public class Tile {
     }
     public void setTileType(boolean bum) {
         tile.setAttackable(bum);
+    }
+
+    public void setIsTower(boolean isTower) {
+        this.isTower = isTower;
+    }
+    
+    public boolean getIsTower() {
+        return this.isTower;
     }
 
     public float getX() {

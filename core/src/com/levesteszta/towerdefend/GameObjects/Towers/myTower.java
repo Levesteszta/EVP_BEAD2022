@@ -1,6 +1,7 @@
 package com.levesteszta.towerdefend.GameObjects.Towers;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.utils.Array;
 import com.levesteszta.towerdefend.GameObjects.Enemies.*;
 import com.levesteszta.towerdefend.MapGen.*;
 
@@ -16,14 +17,25 @@ public abstract class myTower {
     protected TileGrid grid;
     protected Tile standingTile;
     protected Sprite texture;
-    protected WaveManager enemies;
+    protected WaveManager waves;
+    protected ArrayList<Enemy> enemies;
     protected Enemy target;
     protected ArrayList<Bullet> bullets;
+    protected boolean targeted;
 
-    public myTower(TileGrid grid, WaveManager enemies){
+    public myTower(TileGrid grid, WaveManager waves){
         this.grid = grid;
+        this.waves = waves;
+        this.enemies = waves.getCurrentWave().getEnemies();
+
+        this.targeted = false;
+        this.target = getClosestEnemy();
+    }
+
+    public void updateEnemyList(ArrayList<Enemy> enemies){
         this.enemies = enemies;
     }
+
     // Tile -
     public void setStandingTile(Tile standingTile) {
         this.standingTile = standingTile;
@@ -120,11 +132,44 @@ public abstract class myTower {
         return range;
     }
 
-    public abstract void attack(Enemy target);
+    public abstract void attack();
     public abstract ArrayList<String> getStats();
     public void update(){};
     public void draw(){
         DrawTex(this.texture, x, y, TILE_SIZE);
     };
-    //public void checkInRange(int range){}
+
+    protected Enemy getClosestEnemy(){
+        Enemy closestEnemy = null;
+        float closestDistance = 100000;
+        for(Enemy e : enemies){
+            if(checkInRange(e) && getActualDistance(e) < closestDistance){
+                closestDistance = getActualDistance(e);
+                closestEnemy = e;
+            }
+        }
+        if(closestEnemy != null){
+            targeted = true;
+            System.out.println("Closest enemy: "+closestEnemy.getID());
+        }
+        return closestEnemy;
+    }
+
+    protected float getActualDistance(Enemy e){
+        float xDist = Math.abs(e.getX() - x);
+        float yDist = Math.abs(e.getY() - y);
+        return xDist + yDist;
+    }
+
+    public void clearBullets(){
+        this.bullets.clear();
+    }
+    public boolean checkInRange(Enemy e){
+        float xDist = Math.abs(e.getX() - x);
+        float yDist = Math.abs(e.getY() - y);
+        if(xDist <= range*TILE_SIZE && yDist <= range*TILE_SIZE)
+            return true;
+        return false;
+    }
+
 }

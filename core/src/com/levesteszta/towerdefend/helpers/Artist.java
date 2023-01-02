@@ -105,6 +105,12 @@ public class Artist {
         return Math.sqrt(Math.pow((object2.x - object1.x), 2) + Math.pow((object2.y - object1.y), 2));
     }
 
+    public static boolean CheckCollision(float x1, float y1, float width1, float height1, float x2, float y2, float width2, float height2){
+        if(x1 + width1 > x2 && x1 < x2 + width2 && y1 + height1 > y2 && y1 < y2 + height2)
+            return true;
+        else return false;
+    }
+
     public static void LoadAll(){
         am.load(SKIN);
     }
