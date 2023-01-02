@@ -11,6 +11,7 @@ import static com.levesteszta.towerdefend.helpers.Artist.*;
 public abstract class Enemy {
     private float x, y, health, startHealth; 
     private static int ENEMY_ID = 0;
+    private static char weakElemental; 
     private int[] direction;
     private float[] oldDir = {0f, 0f} , newDir;
     protected int id;
@@ -129,8 +130,10 @@ public abstract class Enemy {
         }
     }
 
-    public void takeDamage(int towerDamageValue){
-        System.out.println("Kaptam én:"+id+" , egy sallert: "+towerDamageValue);
+    public void takeDamage(int towerDamageValue,char type){
+        if(type == weakElemental){
+            towerDamageValue*=1.5;
+        }
         this.setHp((int)this.getHp()-towerDamageValue);
     }
 
@@ -151,5 +154,11 @@ public abstract class Enemy {
     }
     public float getY() {
         return y;
+    }
+    public static void setWeakElemental(char weakElemental) {
+        Enemy.weakElemental = weakElemental;
+    }
+    public static char getWeakElemental() {
+        return weakElemental;
     }
 }

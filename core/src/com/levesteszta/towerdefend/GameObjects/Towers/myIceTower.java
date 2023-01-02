@@ -33,7 +33,7 @@ public class myIceTower extends myTower {
 
     public void attack(){
         timeSinceLastFire = 0;
-        bullets.add(new Bullet(GetSprite("bullets/"+getTowerName()+"bullet.png"),target, x, y, BASE_DAMAGE));
+        bullets.add(new Bullet(GetSprite("bullets/"+getTowerName()+"bullet.png"),target, x, y, BASE_DAMAGE,'i'));
         //draw();
     }
 

@@ -48,12 +48,20 @@ public class Wave {
 
     public void spawn(){
         if(db < maxdb){
-            int pick = RANDOM.nextInt(2);   //0 - 1 
+            int pick = RANDOM.nextInt(6);   //0 - 5
             switch(pick){
                 case 0:
-                    enemies.add(new Basic(grid));break;
+                    enemies.add(new Air(grid));break;
                 case 1:
                     enemies.add(new Fire(grid));break;
+                case 2:
+                    enemies.add(new Electro(grid));break;
+                case 3:
+                    enemies.add(new Ice(grid));break;
+                case 4:
+                    enemies.add(new Water(grid));break;
+                case 5:
+                    enemies.add(new Geo(grid));break;
                 default:
                     break;
             }

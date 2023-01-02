@@ -4,10 +4,11 @@ import static com.levesteszta.towerdefend.helpers.Artist.*;
 
 import com.levesteszta.towerdefend.MapGen.TileGrid;
 
-public class Basic extends Enemy {
-    static final char TYPE = 'b';
-    public Basic(TileGrid grid){
-        super(grid,32,100,10,10, getTexturesFromArea("enemies/ellenfel.png",16));
+public class Geo extends Enemy {
+    static final char TYPE = 'g';
+    public Geo(TileGrid grid){
+        super(grid,32,250,50,30, getTexturesFromArea("enemies/ellenfelElectro.png",16));
+        setWeakElemental('i');
     }
     //public void update(){};
     //public void draw(){};

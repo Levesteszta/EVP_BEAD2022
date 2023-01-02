@@ -10,14 +10,16 @@ public class Bullet {
     private Sprite texture;
     private boolean alive;
     private float x, y, xVelocity, yVelocity;
+    private char TowerType;
     private int damage, size;
     private Enemy target;
 
-    public Bullet(Sprite texture,Enemy target, float x, float y, int damage){
+    public Bullet(Sprite texture,Enemy target, float x, float y, int damage, char type){
         this.texture = texture;
         this.x = x; this.y = y;
         this.damage = damage;
         this.target = target;
+        this.TowerType = type;
         this.alive = true;
         this.size = (int)(x+((TILE_SIZE/2) / 2));
         this.xVelocity =0f; this.yVelocity = 0f;
@@ -48,7 +50,7 @@ public class Bullet {
                 this.x += xVelocity * Delta() * SPEED;
                 this.y += yVelocity * Delta() * SPEED;
                 if(CheckCollision(x, y, size, size, target.getX(), target.getY(), TILE_SIZE, TILE_SIZE)){
-                    target.takeDamage(damage);
+                    target.takeDamage(damage,TowerType);
                     alive = false;
                 }
                 draw();
