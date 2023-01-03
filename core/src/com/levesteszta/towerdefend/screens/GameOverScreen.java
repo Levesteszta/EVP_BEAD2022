@@ -26,6 +26,11 @@ public class GameOverScreen extends ScreenAdapter {
         skin = assetManager.get(Artist.SKIN);
     }
 
+    
+    /** 
+     * @param text
+     * @return TextButton
+     */
     private TextButton BackButton(String text){
         TextButton button = new TextButton(text, skin);
         gameoverTable.add(button).width(WINDOW_WIDTH/2).height(80).padBottom(0).padTop(WINDOW_HEIGHT-140);
@@ -51,6 +56,10 @@ public class GameOverScreen extends ScreenAdapter {
         
     }
 
+    
+    /** 
+     * @param delta
+     */
     @Override
     public void render(float delta){
         Gdx.gl.glClearColor(0f, 0f, 0f, 0f);

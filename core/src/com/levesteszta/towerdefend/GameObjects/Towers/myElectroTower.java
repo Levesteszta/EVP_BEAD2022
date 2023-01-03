@@ -51,6 +51,10 @@ public class myElectroTower extends myTower {
             bullet.update();
         draw();
     }
+    
+    /** 
+     * @return ArrayList<String>
+     */
     @Override
     public ArrayList<String> getStats(){
         return new ArrayList<String>(){

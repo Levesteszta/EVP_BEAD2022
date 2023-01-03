@@ -28,6 +28,11 @@ public class myGame extends ScreenAdapter {
         }
     }
 
+    
+    /** 
+     * Game is Over, Good bye horses 
+     * @return boolean
+     */
     public boolean isGameOver(){
         return this.isGameOver;
     }

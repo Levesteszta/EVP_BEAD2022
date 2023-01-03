@@ -52,6 +52,10 @@ public class myIceTower extends myTower {
         draw();
     }
 
+    
+    /** 
+     * @return ArrayList<String>
+     */
     @Override
     public ArrayList<String> getStats(){
         return new ArrayList<String>(){

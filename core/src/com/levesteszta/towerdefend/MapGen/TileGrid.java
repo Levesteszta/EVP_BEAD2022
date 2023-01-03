@@ -43,6 +43,10 @@ public class TileGrid{
 		};
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getStartIndex(){
         for(int i = 0; i < map_grid2[0].length;i++){
             if(map_grid2[i][0].getTile().id == 1)
@@ -51,30 +55,62 @@ public class TileGrid{
         return 0;
     }
 
+    
+    /** 
+     * @param xCord
+     * @param yCord
+     * @return Tile
+     */
     public Tile getTileDataesByCoord(float xCord, float yCord) {
         int x_eltolas = 2; int y_eltolas = 6;
         if(this.isInCoords(xCord, yCord))
             return map_grid2[((int)(yCord/32)-y_eltolas)][((int)(xCord/32)-x_eltolas)];
         return null;
     }
+    
+    /** 
+     * @param oszlop
+     * @param sor
+     * @return Tile
+     */
     public Tile getTileDataesByInd(int oszlop, int sor) {
         return map_grid2[oszlop][sor];
     }
 
+    
+    /** 
+     * @param xCord
+     * @param yCord
+     * @param type
+     */
     public void setTileDataes(float xCord, float yCord,TileType type) {
         int x_eltolas = 2; int y_eltolas = 6;
         map_grid2[((int)(yCord/32)-y_eltolas)][((int)(xCord/32)-x_eltolas)] = 
             new Tile((map_grid2[((int)(yCord/32)-y_eltolas)][((int)(xCord/32)-x_eltolas)].getX()),(map_grid2[((int)(yCord/32)-y_eltolas)][((int)(xCord/32)-x_eltolas)].getY()),TILE_SIZE, type);
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getWidth() {
         return map[0].length;
     }
     
+    
+    /** 
+     * @return int
+     */
     public int getHeight() {
         return map.length;
     }
     
+    
+    /** 
+     * @param x
+     * @param y
+     * @return boolean
+     */
     public boolean isInCoords(float x, float y){
         if(x >= this.start_X && y >= this.start_Y && x <= this.end_X && y <= this.end_Y) 
             return true;

@@ -69,13 +69,28 @@ public class Wave {
         }
     }
 
+    
+    /** 
+     * Visszadja a legenerált ellenfél tömböt 
+     * @return ArrayList<Enemy>
+     */
     public ArrayList<Enemy> getEnemies() {
         return this.enemies;
     }
 
+    
+    /** 
+     * Visszadaj hogy mindenki halott-e a "hullámból"
+     * @return boolean
+     */
     public boolean isWaveCompleted(){
         return this.waveCompleted;
     }
+    
+    /** 
+     * Visszaadja a sorrendbe a következő élőt
+     * @return Enemy
+     */
     public Enemy getNextAlive(){
         for(Enemy e : enemies){
             if(!e.isDead())

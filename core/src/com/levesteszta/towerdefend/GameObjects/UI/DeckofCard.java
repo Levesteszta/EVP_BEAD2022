@@ -15,6 +15,11 @@ public class DeckofCard {
         makeCards();
     }
 
+    
+    /** 
+     * Megcsinálja a kártyákat
+     * @throws Throwable
+     */
     private void makeCards() throws Throwable{
         this.cards = new ArrayList<myCard>(6);
         this.cards.add(new myCard((new myAirTower(map, waves).getStats())));
@@ -30,6 +35,13 @@ public class DeckofCard {
             card.draw((int)(this.cards.indexOf(card)*card.getWidth()),0);
     }
 
+    
+    /** 
+     * Megvizsgálja hogy a beadott x,y koordináta mentén milyen kártya van
+     * @param x
+     * @param y
+     * @return myCard
+     */
     public myCard getInCoord(int x, int y){
         for(myCard card : cards){
             if(card.thisClicked(x, y))
@@ -38,6 +50,11 @@ public class DeckofCard {
         return null;
     }
 
+    
+    /** 
+     * Visszaadja a generált Kártyákat
+     * @return ArrayList<myCard>
+     */
     public ArrayList<myCard> getCards() {
         return cards;
     }

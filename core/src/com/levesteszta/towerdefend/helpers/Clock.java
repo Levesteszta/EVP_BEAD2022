@@ -5,6 +5,10 @@ public class Clock {
     private static long lastFrame = System.currentTimeMillis(), totalTime = 0;
     private static float d = 0f, multiplier = 1f;
 
+    
+    /** 
+     * @return long
+     */
     public static long getTimer(){
         return System.currentTimeMillis()*1000 / 60;
     }
@@ -16,6 +20,10 @@ public class Clock {
         totalTime = 0;
     }
 
+    
+    /** 
+     * @return float
+     */
     public static float getDelta(){
         long currentTime = getTimer();
         int delta = (int)((currentTime - lastFrame));
@@ -23,6 +31,10 @@ public class Clock {
         return (delta*0.0001f) > 0 ? (delta*0.0001f) : 0;
     }
 
+    
+    /** 
+     * @return float
+     */
     public static float Delta() {
         if(paused) 
             return 0;
@@ -30,10 +42,18 @@ public class Clock {
             return d*multiplier;
     }
 
+    
+    /** 
+     * @return float
+     */
     public static float TotalTime(){
         return totalTime;
     }
 
+    
+    /** 
+     * @return float
+     */
     public static float Multiplier() {
         return multiplier;
     }
@@ -43,6 +63,11 @@ public class Clock {
         totalTime += d;
     }
 
+    
+    /** 
+     * @param sec
+     * @return boolean
+     */
     public static boolean Wait(float sec){
         float dd = d + sec*0.0001f;
         System.out.println("dd :"+dd);
@@ -59,6 +84,10 @@ public class Clock {
         paused = false;
     }
 
+    
+    /** 
+     * @return boolean
+     */
     public static boolean isPaused() {
         return paused;
     }

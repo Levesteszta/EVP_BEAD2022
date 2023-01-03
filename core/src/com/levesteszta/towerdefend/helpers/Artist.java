@@ -23,6 +23,14 @@ public class Artist {
     public static final float WINDOW_WIDTH = 997f, WINDOW_HEIGHT = 706f;
     public static int TILE_SIZE = 32;
 
+    
+    /** 
+     * Kirajzoljuk a texture-t, adott x,y koordinátára, size mérettel
+     * @param texture
+     * @param x
+     * @param y
+     * @param size
+     */
     public static void DrawTex(Texture texture, float x, float y, float size){
         texture.bind();
         Gdx.gl.glActiveTexture(GL20.GL_TEXTURE0);
@@ -30,6 +38,15 @@ public class Artist {
         TowerDefend.batch.draw(texture, x, y, size, size);
         TowerDefend.batch.end();
     }
+    
+    /** 
+     * Kirajzoljuk a texture-t, adott x,y koordinátára, adott width szélességel, és height magassággal
+     * @param texture
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     */
     public static void DrawTex(Texture texture, float x, float y, float width, float height){
         texture.bind();
         Gdx.gl.glActiveTexture(GL20.GL_TEXTURE0);
@@ -37,6 +54,14 @@ public class Artist {
         TowerDefend.batch.draw(texture, x, y, width, height);
         TowerDefend.batch.end();
     }
+    
+    /** 
+     * Kirajzoljuk a sp-t spriteot, adott x,y koordinátára, size mérettel
+     * @param sp
+     * @param x
+     * @param y
+     * @param size
+     */
     public static void DrawTex(Sprite sp, float x, float y, float size){
         Gdx.gl.glActiveTexture(GL20.GL_TEXTURE0);
         TowerDefend.batch.begin();
@@ -44,6 +69,14 @@ public class Artist {
         TowerDefend.batch.end();
     }
 
+    
+    /** 
+     * Kirajzoljuk az adott text szöveget, x,y kordinátára
+     * @param text
+     * @param x
+     * @param y
+     * @param size
+     */
     public static void DrawText(String text, float x, float y, int size){
         BitmapFont font = new BitmapFont();
         GlyphLayout glyphLayout = new GlyphLayout(font,text);
@@ -53,6 +86,15 @@ public class Artist {
         font.draw(TowerDefend.batch,glyphLayout, (x) , (y));
         TowerDefend.batch.end();
     }
+    
+    /** 
+     * Kirajzoljuk az adott text szöveget, x,y kordinátára, adoww width alapján középre igaziottan
+     * @param text
+     * @param x
+     * @param y
+     * @param width
+     * @param size
+     */
     public static void DrawTextCenterAllign(String text, float x, float y, float width, int size){
         BitmapFont font = new BitmapFont();
         GlyphLayout layout = new GlyphLayout(font,text);
@@ -76,6 +118,13 @@ public class Artist {
 		render.end();
     }
 
+    
+    /** 
+     * Adott filenameből betöltött textura területről(x koordináta mentén) adott size mérettel felosztott Sprite tömb visszadaása 
+     * @param Filename
+     * @param size
+     * @return Sprite[]
+     */
     public static Sprite[] getTexturesFromArea(String Filename, int size){
         Texture origin = GetTexture(Filename);
         int n = (int)(origin.getWidth()/size);
@@ -85,12 +134,24 @@ public class Artist {
         return sp;
     }
 
+    
+    /** 
+     * Adott Fájlnémből visszaadott Textura
+     * @param Filename
+     * @return Texture
+     */
     public static Texture GetTexture(String Filename){
         am.load(Filename,Texture.class);
         am.finishLoading();
         return am.get(Filename);
     }
 
+    
+    /** 
+     * Adott Fájlnémből visszaadott Sprite
+     * @param Filename
+     * @return Sprite
+     */
     public static Sprite GetSprite(String Filename){
         Texture origin = GetTexture(Filename);
         Sprite sp = new Sprite(origin,16,16);
@@ -101,10 +162,30 @@ public class Artist {
         TowerDefend.batch.dispose();
     }
 
+    
+    /** 
+     * Visszadja 2 Vector objektum közti távolságot
+     * @param object1
+     * @param object2
+     * @return double
+     */
     public static double getRange(Vector2 object1, Vector2 object2){
         return Math.sqrt(Math.pow((object2.x - object1.x), 2) + Math.pow((object2.y - object1.y), 2));
     }
 
+    
+    /** 
+     * 2 "objektum" Collison azaz érintkezési vizsgálata
+     * @param x1
+     * @param y1
+     * @param width1
+     * @param height1
+     * @param x2
+     * @param y2
+     * @param width2
+     * @param height2
+     * @return boolean
+     */
     public static boolean CheckCollision(float x1, float y1, float width1, float height1, float x2, float y2, float width2, float height2){
         if(x1 + width1 > x2 && x1 < x2 + width2 && y1 + height1 > y2 && y1 < y2 + height2)
             return true;
@@ -115,6 +196,11 @@ public class Artist {
         am.load(SKIN);
     }
 
+    
+    /** 
+     * A 'filebetöltő' visszaadása
+     * @return AssetManager
+     */
     public static AssetManager getAssetManager(){
         return am;
     }

@@ -106,29 +106,62 @@ public class Player {
 
     }
 
+    
+    /** 
+     * Beállítja az adott Csempét az adott toronyra
+     * @param tower
+     * @param x
+     * @param y
+     */
     public void setTile(myTower tower, int x, int y){
         map.setTileDataes(x, y, TileType.DIRT10);
         System.out.println(map.getTileDataesByCoord(x, y).toString());
         //map.draw();
     }
 
+    
+    /** 
+     * Visszadja a pénzünket
+     * @return int
+     */
     public int getMoney() {
         return money;
     }
     
+    
+    /** 
+     * Hozzáadja a pénzt a jelenlegihez
+     * @param plusMoney
+     */
     public static void setMoney(int plusMoney){
         money += plusMoney;
     }
 
+    
+    /** 
+     * Megvizsgáljuk a pénzünk elég e a vizsgált értékhez
+     * @param checkMoney
+     * @return boolean
+     */
     public boolean haveEnought(int checkMoney){
         if(money >= checkMoney)
             return true;
         return false;
     }
+    
+    /** 
+     * Kivonjuka pénzünkből 
+     * @param costMoney
+     */
     public void costMoney(int costMoney){
         money -= costMoney;
     }
     
+    
+    /** 
+     * Bázisunk sebzésnek van kitéve, ha véletlen meghalnánk akkor feldobjuk a pacskert
+     * @param damage
+     */
     public static void takeDamage(int damage){
         if(health > damage)
             health -= damage;
@@ -136,10 +169,20 @@ public class Player {
             health = -1;
     }
 
+    
+    /** 
+     * Visszaadja a pályán jelenlévő tornyokat
+     * @return ArrayList<myTower>
+     */
     public static ArrayList<myTower> getTower(){
         return towers;
     }
 
+    
+    /** 
+     * Visszaadja hogy éppen vége van e a játéknak
+     * @return boolean
+     */
     public boolean isGameOver() {
         if(health <= 0)
             return true;

@@ -56,6 +56,11 @@ public class WaveManager {
         db++;
     }
 
+    
+    /** 
+     * Visszaadja az aktuális Hullámot
+     * @return Wave
+     */
     public Wave getCurrentWave(){
         return this.currentWave;
     }

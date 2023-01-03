@@ -101,6 +101,10 @@ public class GameStage extends ScreenAdapter{
         }
     }
 
+    
+    /** 
+     * @param delta
+     */
     @Override
     public void render(float delta) {
         if(Clock.isPaused()){

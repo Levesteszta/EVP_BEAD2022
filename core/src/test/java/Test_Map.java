@@ -33,6 +33,10 @@ public class Test_Map {
         assertNotNull(MAP.getStart());
     }
 
+    
+    /** 
+     * @throws IllegalArgumentException
+     */
     @Test
     public void ishaveException() throws IllegalArgumentException {
         thrown.expect(IllegalArgumentException.class);

@@ -8,6 +8,11 @@ public class Map {
     int startIndex = -1, endIndex = -1;
     Random rand = new Random();
 
+    
+    /** 
+     * @param get_YRange
+     * @param get_XRange
+     */
     private void setup(int get_YRange, int get_XRange){
         widthRange = (int)Math.floor(get_XRange/32.0);      //Hány 32x32 es kockát tudunk az X (szélesség) számegyenesre rakni 
         heightRange = (int)Math.floor(get_YRange/32.0);     //Hány 32x32 es kockát tudunk az Y (magasság) száemgyenesre rakni 
@@ -28,6 +33,12 @@ public class Map {
             endIndex = (int)(rand.nextInt(((heightRange-2) - 1) + 1) + 1); 
     };
 
+    
+    /** 
+     * @param get_YRange
+     * @param get_XRange
+     * @return int[][]
+     */
     public int[][] generate(int get_YRange, int get_XRange){
         setup(get_YRange, get_XRange);
         if(!wasSetup)
@@ -101,10 +112,18 @@ public class Map {
         return map2D;
     }
 
+    
+    /** 
+     * @return int[][]
+     */
     public int[][] getMap(){
         return map2D;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getStart(){
         return startIndex;
     }

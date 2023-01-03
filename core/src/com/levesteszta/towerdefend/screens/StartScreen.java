@@ -21,6 +21,11 @@ public class StartScreen extends ScreenAdapter {
     private Skin skin;
     private Table mainTable;
 
+    
+    /** 
+     * @param text
+     * @return TextButton
+     */
     private TextButton addButton(String text){
         TextButton button = new TextButton(text, skin);
         mainTable.add(button).width(WINDOW_WIDTH/2).height(80).padBottom(10);
@@ -34,6 +39,10 @@ public class StartScreen extends ScreenAdapter {
         skin = assetManager.get(Artist.SKIN);
     }
 
+    
+    /** 
+     * @param ClickListener(
+     */
     @Override
     public void show() {    //ugyanolyan mint a create, csak ez 1x fut le
         mainTable = new Table();
@@ -73,6 +82,10 @@ public class StartScreen extends ScreenAdapter {
         });
     }
 
+    
+    /** 
+     * @param delta
+     */
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(0f, 0f, 0f, 0f);

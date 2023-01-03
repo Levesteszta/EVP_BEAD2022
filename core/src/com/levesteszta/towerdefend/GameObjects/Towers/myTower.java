@@ -36,10 +36,20 @@ public abstract class myTower {
         this.target = getClosestEnemy();
     }
 
+    
+    /** 
+     * Az ellenfél listát frissití hogy kit kellene lövöldözni
+     * @param enemies
+     */
     public void updateEnemyList(ArrayList<Enemy> enemies){
         this.enemies = enemies;
     }
 
+    
+    /** 
+     * Beállítjuk pontosan csempéhez igazítva hova álíltsuk a figurát + megnézzük itt jó helyre e nyomja a játékos
+     * @param standingTile
+     */
     // Tile -
     public void setStandingTile(Tile standingTile) {
         this.standingTile = standingTile;
@@ -68,69 +78,157 @@ public abstract class myTower {
         }
         
     }
+    
+    /** 
+     * Visszadja a Csempét amin van a torony
+     * @return Tile
+     */
     public Tile getStandingTile() {
         return standingTile;
     }
+    
+    /** 
+     * Beállítja a nevet
+     * @param name
+     */
     //Name
     public void setName(String name) {
         this.name = name;
     }
+    
+    /** 
+     * Visszaadja a nevét a toronynak ( típusát )
+     * @return String
+     */
     public String getTowerName() {
         return name;
     }
+    
+    /** 
+     * Visszaadja a lővés 'újratöltés' idejét
+     * @return float
+     */
     //Cooldown
     public float getCooldown() {
         return cd;
     }
+    
+    /** 
+     * Beállítja a lővés 'újratöltés' idejét
+     * @param cd
+     */
     public void getCooldown(float cd) {
         this.cd = cd;
     }
+    
+    /** 
+     * A sebzést állítja be
+     * @param defaultDmg
+     */
     //DMG
     public void setDefaultDmg(int defaultDmg) {
         this.defaultDmg = defaultDmg;
     }
+    
+    /** 
+     * Visszadaja a sebzést
+     * @return int
+     */
     public int getDefaultDmg() {
         return defaultDmg;
     }
+    
+    /** 
+     * Az árat állítja be, azért benn vna ha véletlen 0 alatti lenen hogy akkor hagyjuk inkább
+     * @param cost
+     */
     // Cost -
     public void setCost(int cost) {
         if(cost > 0)
             this.cost = cost;
     }
+    
+    /** 
+     * Visszaadja az árat
+     * @return int
+     */
     public int getCost() {
         return cost;
     }
+    
+    /** 
+     * Visszaadja az Életerőt
+     * @return int
+     */
     // Hp -
     public int getHp() {
         return hp;
     }
+    
+    /** 
+     * Beállítja az életerőt
+     * @param hp
+     */
     public void setHp(int hp) {
         if(hp > 0)
             this.hp = hp;
     }
+    
+    /** 
+     * X koordinátája
+     * @return float
+     */
     // X -
     public float getX() {
         return x;
     }
+    
+    /** 
+     * @param x
+     */
     public void setX(float x) {
         this.x = x;
     }
+    
+    /** 
+     * Y koordinátája
+     * @return float
+     */
     // Y -
     public float getY() {
         return y;
     }
+    
+    /** 
+     * @param y
+     */
     public void setY(float y) {
         this.y = y;
     }
+    
+    /** 
+     * Textura, kínézet beállítása
+     * @param texture
+     */
     // Texture
     public void setTextures(Sprite texture) {
         this.texture = texture;
     }
+    
+    /** 
+     * Hatótáv beállítása
+     * @param range
+     */
     // Range
     public void setTowerRange(int range) {
         this.range = range;
     }
-    public int setTowerRange() {
+    
+    /** 
+     * Hatótáb lekérdezése
+     * @return int
+     */
+    public int getTowerRange() {
         return range;
     }
 
@@ -141,6 +239,10 @@ public abstract class myTower {
         DrawTex(this.texture, x, y, TILE_SIZE);
     };
 
+    
+    /** Visszadja a legközelebbi Ellenfelet
+     * @return Enemy
+     */
     protected Enemy getClosestEnemy(){
         Enemy closestEnemy = null;
         float closestDistance = 100000;
@@ -157,6 +259,12 @@ public abstract class myTower {
         return closestEnemy;
     }
 
+    
+    /** 
+     * Visszaadja az Ellenfél és a Torony közti távolságot
+     * @param e
+     * @return float
+     */
     protected float getActualDistance(Enemy e){
         float xDist = Math.abs(e.getX() - x);
         float yDist = Math.abs(e.getY() - y);
@@ -166,6 +274,12 @@ public abstract class myTower {
     public void clearBullets(){
         this.bullets.clear();
     }
+    
+    /** 
+     * Visszadja hogy a Torony és az Ellenfél a Hatótávon belül van e 
+     * @param e
+     * @return boolean
+     */
     public boolean checkInRange(Enemy e){
         float xDist = Math.abs(e.getX() - x);
         float yDist = Math.abs(e.getY() - y);

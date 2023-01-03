@@ -62,9 +62,19 @@ public class Bullet {
         DrawTex(texture, x+((TILE_SIZE/2) / 2), y+((TILE_SIZE/2) / 2), TILE_SIZE/2);
     }
 
+    
+    /** 
+     * X koordinátája
+     * @return float
+     */
     public float getX() {
         return x;
     }
+    
+    /** 
+     * Y koordinátája
+     * @return float
+     */
     public float getY() {
         return y;
     }

@@ -78,6 +78,12 @@ public abstract class Enemy {
         DrawTex(GetTexture("ui/healthbar/hpborder.png"), x, y+32, TILE_SIZE,6);
     };
 
+    
+    /** 
+     * A következő útírányhoz szükséges írányadó adatcsomag + az előző - rákövetkező utírány figyelése
+     * @param now
+     * @return int[]
+     */
     private int[] FindNextRoadTile(Tile now){
         int[] dir = new int[2]; //x,y érték mennyivel változik adott részen hogy lássuk merre is kell menni
         newDir = new float[2];
@@ -110,17 +116,37 @@ public abstract class Enemy {
         return dir;
     }
 
+    
+    /** 
+     * Visszaadja a kezdőCsempét
+     * @return Tile
+     */
     public Tile getStartTile() {
         return this.startTile;
     }
+    
+    /** 
+     * Visszaadja a 'mapot'
+     * @return TileGrid
+     */
     public TileGrid getTileGrid(){
         return this.grid;
     }
 
+    
+    /** 
+     * Visszaadja az Életerőt
+     * @return float
+     */
     //getter-setter methods
     public float getHp(){
         return this.health;
     }
+    
+    /** 
+     * A Hp beállítása, ha véletlen kevesebb lenne mint 0 akkor a halál beáltját is megadjuk akkor már itt
+     * @param hp
+     */
     protected void setHp(int hp){
         this.health = hp;
 
@@ -130,6 +156,12 @@ public abstract class Enemy {
         }
     }
 
+    
+    /** 
+     * A sebzés kezelése, + ha gyengesége a sebzés típusa
+     * @param towerDamageValue
+     * @param type
+     */
     public void takeDamage(int towerDamageValue,char type){
         if(type == weakElemental){
             towerDamageValue*=1.5;
@@ -137,6 +169,11 @@ public abstract class Enemy {
         this.setHp((int)this.getHp()-towerDamageValue);
     }
 
+    
+    /** 
+     * Halot-e
+     * @return boolean
+     */
     public boolean isDead(){
         return this.flagedToDead;
     }
@@ -145,19 +182,44 @@ public abstract class Enemy {
         this.flagedToDead = true;
     }
 
+    
+    /** 
+     * Teszt jelelggel van csak, de visszaadja mi az id
+     * @return int
+     */
     public int getID(){
         return this.id;
     }
 
+    
+    /** 
+     * X koordinátája
+     * @return float
+     */
     public float getX() {
         return x;
     }
+    
+    /** 
+     * Y koordinátája
+     * @return float
+     */
     public float getY() {
         return y;
     }
+    
+    /** 
+     * Gyengeség elementáljának beállítása
+     * @param weakElemental
+     */
     public static void setWeakElemental(char weakElemental) {
         Enemy.weakElemental = weakElemental;
     }
+    
+    /** 
+     * Visszaadja a gyengeség elementálját
+     * @return char
+     */
     public static char getWeakElemental() {
         return weakElemental;
     }
