@@ -12,7 +12,7 @@ public class myElectroTower extends myTower {
     private static final int BASE_DAMAGE = 20;
     private static final int RANGE = 9;
     private static final float COOLDOWN = 2f;
-    private static final int COST = 10;
+    private static final int COST = 15;
     private static final String textureName = "electro.png";
 
     private float timeSinceLastFire;

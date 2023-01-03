@@ -9,10 +9,10 @@ import com.levesteszta.towerdefend.MapGen.TileGrid;
 import java.util.ArrayList;
 
 public class myIceTower extends myTower {
-    private static final int BASE_DAMAGE = 60;
+    private static final int BASE_DAMAGE = 35;
     private static final int RANGE = 5;
     private static final float COOLDOWN = 15f;
-    private static final int COST = 10;
+    private static final int COST = 80;
     private static final String textureName = "ice.png";
 
     private float timeSinceLastFire;

@@ -12,7 +12,7 @@ public class myWaterTower extends myTower {
     private static final int BASE_DAMAGE = 5;
     private static final int RANGE = 10;
     private static final float COOLDOWN = 3f;
-    private static final int COST = 10;
+    private static final int COST = 5;
     private static final String textureName = "water.png";
 
     private float timeSinceLastFire;

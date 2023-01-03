@@ -12,7 +12,7 @@ public class myGeoTower extends myTower {
     private static final int BASE_DAMAGE = 0;
     private static final int RANGE = 0;
     private static final float COOLDOWN = 0f;
-    private static final int COST = 10;
+    private static final int COST = 20;
     private static final String textureName = "earth.png";
 
     private float timeSinceLastFire;

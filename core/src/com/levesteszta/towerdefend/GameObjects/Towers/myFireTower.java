@@ -12,7 +12,7 @@ public class myFireTower extends myTower {
     private static final int BASE_DAMAGE = 50;
     private static final int RANGE = 4;
     private static final float COOLDOWN = 8f;
-    private static final int COST = 10;
+    private static final int COST = 100;
     private static final String textureName = "fire.png";
 
     private float timeSinceLastFire;

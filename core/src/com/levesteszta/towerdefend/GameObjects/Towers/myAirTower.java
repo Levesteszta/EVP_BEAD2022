@@ -12,7 +12,7 @@ public class myAirTower extends myTower {
     private static final int BASE_DAMAGE = 10;
     private static final int RANGE = 5;
     private static final float COOLDOWN = 5f;
-    private static final int COST = 50;
+    private static final int COST = 15;
     private static final String textureName = "air.png";
 
     private float timeSinceLastFire;

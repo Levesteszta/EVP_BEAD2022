@@ -52,7 +52,6 @@ public abstract class myTower {
             else {
                 this.standingTile = null;
                 this.x = -1; this.y = -1;
-                System.out.println("Nem jó a hely");
             }
         }
         if(this.name == "Earth"){
@@ -65,7 +64,6 @@ public abstract class myTower {
             else {
                 this.standingTile = null;
                 this.x = -1; this.y = -1;
-                System.out.println("Nem jó a hely");
             }
         }
         
