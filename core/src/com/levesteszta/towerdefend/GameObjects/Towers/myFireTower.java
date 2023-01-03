@@ -3,7 +3,6 @@ package com.levesteszta.towerdefend.GameObjects.Towers;
 import static com.levesteszta.towerdefend.helpers.Clock.*;
 import static com.levesteszta.towerdefend.helpers.Artist.*;
 
-import com.badlogic.gdx.math.Vector2;
 import com.levesteszta.towerdefend.GameObjects.Enemies.*;
 import com.levesteszta.towerdefend.MapGen.TileGrid;
 import java.util.ArrayList;

@@ -12,7 +12,6 @@ import com.levesteszta.towerdefend.GameObjects.UI.myCard;
 import com.levesteszta.towerdefend.MapGen.*;
 import com.levesteszta.towerdefend.helpers.Clock;
 import com.levesteszta.towerdefend.helpers.TileType;
-import com.levesteszta.towerdefend.screens.GameStage;
 
 public class Player {
     private static TileGrid map;
@@ -101,7 +100,7 @@ public class Player {
                 selectedTower = tmp.getTowerTypeName();
                 selectedTowerPrice = tmp.getCost(); 
             }else {
-                
+                //TODO: Notification for no money
             }
         }
 

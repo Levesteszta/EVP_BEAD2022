@@ -3,7 +3,6 @@ package com.levesteszta.towerdefend.screens;
 import static com.levesteszta.towerdefend.helpers.Artist.*;
 
 import com.levesteszta.towerdefend.MapGen.TileGrid;
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
@@ -63,8 +62,6 @@ public class GameStage extends ScreenAdapter{
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Exit...");
-                gameTable.clear();
-                GameStage.this.game.dispose();
                 Gdx.app.exit();
             }
         });

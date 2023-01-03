@@ -22,38 +22,115 @@ enum TileType {
     +getX() , getY() : float
     +toString() : String
 }
-class TowerDefend {
-	+SPEED = 1f : static final float 
-	-spawnPoint : int
-	-render : ShapeRenderer
-    -camera : OrthographicCamera
-	-room : TileGrid
-	-enemy : Enemy
-	+create()	
-	+dispose()
-	+render()
+class TowerDefend{
+	+SpriteBatch batch
+	+Stage stage
+	+Game game
+	+void create()
+	+void dispose()
 }
+
 class Enemy {
-    #SPEED = 1.0f, MULT = 0.3f  : static float
-    #x, y: float
-    #direction : int[]
-    #startTile : Tile
+    -x :float
+    -y :float
+    -health :float 
+    -startHealth :float  
+    -ENEMY_ID: int
+    -weakElemental :char 
+    -direction :int[] 
+    -oldDir :float[] 
+    -newDir :float[] 
+    #id : int;
+    #SPEED = 0.1f:float
+    #startTile:Tile
+    #size :int
+    #prize :int
+    #damage :int                  
+    #textures : Spirte[]
+    #first = true :boolean
     #grid:TileGrid
-    #size, health, damage : int                     
-    #sprites : Sprite[]
-    #first = true : boolean
-    Enemy(TileGrid grid, int size ,int health, int damage, Sprite[] textures)
-    
-    #remove()
-    #setX(float deltaX)
-    #setY(float deltaX)
-    #update(float deltaX)
-    #FindNextRoadTile(Tile now) : int[]
-    #draw()
-    #getStartTile() : Tile
-    #getTileGrid() : TileGrid
+
+    #flagedToDead = false :boolean
+
+    Enemy(TileGrid grid, int size ,float health,int prize, int damage, Sprite[] textures)
+    +update() : void
+    +draw() : void
+    -FindNextRoadTile(Tile now) :int[] 
+    +getStartTile():Tile
+    +getTileGrid():TileGrid
+    +getHp():float
+    #setHp(int hp):void
+    +takeDamage(int towerDamageValue,char type):void
+    +isDead():boolean
+    +Die():void
+    +getID():int
+    +getX():float
+    +getY():float
+    +setWeakElemental(char weakElemental):void
+    +getWeakElemental():char
 }
 class Basic
+class Fire
+class Electro
+class Geo
+class Water
+class Ice
+
+class myTower{
+    -hp :int
+    -defaultDmg:int
+    -range:int
+    -cost:int
+    -name:String
+    -cd: float
+
+    #x:float 
+    #y:float
+    #grid:TileGrid
+    #standingTile:Tile
+    #texture:Sprite
+
+    #waves:WaveManager
+    #enemies:ArrayList<Enemy> 
+    #target:Enemy
+    # bullets: ArrayList<Bullet>
+    # targeted:boolean
+    + myTower(TileGrid grid, WaveManager waves)
+    + updateEnemyList(ArrayList<Enemy> enemies):void
+    + setStandingTile(Tile standingTile):void
+    + getStandingTile():Tile
+    + setName(String name)Name():void
+    + getCooldown():float
+    + getCooldown(float cd):void
+    + setDefaultDmg(int defaultDmg):void
+    + getDefaultDmg():int
+    + setCost(int cost):void
+    + getCost():int
+    + getHp():int
+    + setHp(int hp):void
+    + getX():float
+    + setX(float x):void
+    + getY():float
+    + setY(float y):void
+    + setTextures(Sprite texture):void
+    + setTowerRange(int range):void
+    + setTowerRange():int
+    + attack():void
+    + getStats():ArrayList<String>
+    + update():void
+    + draw():void
+    # getClosestEnemy():Enemy
+    # getActualDistance(Enemy e):float
+    + clearBullets():void
+    + checkInRange(Enemy e):boolean
+}
+class myAirTower
+class myElectroTower
+class myFireTower
+class myGeoTower
+class myIceTower
+class myWaterTower
+
 class Wave {
     -db : int
     -spawnTime : float
@@ -65,6 +142,22 @@ class Wave {
     +update(float deltaTime)
     +spawn()
 }
+
+class WaveManager {
+    -RANDOM:Random
+    -db:int
+    -lastSpawnTime:float
+    -maxdb:int
+    -RANDOM_MAX_TICK:int
+    -currentWave:Wave
+    -grid:TileGrid
+
+    +WaveManager(TileGrid grid)
+    +update():void
+    -newWave():void
+    +getCurrentWave():Wave
+}
+
 
 class Map {
     +map2D = null : int[][]
@@ -100,10 +193,13 @@ class Artist{
     +TILE_SIZE: int
     +batch : SpriteBatch
     +DrawTex(Sprite sp, float x, float y, float size) : void
-    +DrawTex(Texture texture, float x, float y, float size)
+    +DrawTex(Texture texture, float x, float y, float size):void
+    +DrawTextCenterAllign(String text, float x, float y, float width, int size):void
+    +DrawText(String text, float x, float y, int size):void
     +getTexturesFromArea : Sprite[]
     +GetInternalTexture : Texture
     +GetTexture : Texture
+    +getRange(Vector2 object1, Vector2 object2):double
     +Dispose : void
 }
 
@@ -114,14 +210,172 @@ class Clock{
     +resetTimer() : void
 }
 
-TowerDefend "1" -- "N" Wave
-TowerDefend -- Clock
-TowerDefend -- TileGrid 
+
+class DeckofCard {
+    -map:TileGrid
+    -waves:WaveManager
+    -cards:ArrayList<myCard> 
+    +DeckofCard(TileGrid map, WaveManager waves)
+    -makeCards():void
+    +draw():void
+    +getInCoord(int x, int y):myCard
+    +getCards():ArrayList<myCard> 
+}
+
+class myCard {
+    -x:float
+    -y:float
+    -width:float
+    -height:float
+    -towerStat:ArrayList<String>
+
+    +myCard(ArrayList<String> towerStat)
+    +draw(int x, int y):void
+    +isClicked(int x, int y):boolean
+    +thisClicked(int x, int y):boolean
+    +getCost():int
+    +getWidth():float
+    +getHeight():float
+    +getX():float
+    +getY():float
+    +getTowerTypeName():String
+   
+}
+
+class Player {
+    -TileGrid map
+    -float health
+    -float startHealth
+    -int money
+    -ArrayList<myTower> towers
+    -String selectedTower
+    -WaveManager waves
+    -DeckofCard deck
+    -int selectedTowerPrice
+
+    +Player(TileGrid room, WaveManager waves)
+    +void update()
+    +void setTile(myTower tower, int x, int y)
+    +int getMoney()
+    +void setMoney(int plusMoney)
+    +boolean haveEnought(int checkMoney)
+    +void costMoney(int costMoney)
+    +void takeDamage(int damage)
+    +ArrayList<myTower> getTower()
+    +boolean isGameOver()
+}
+
+class myGame{
+    -TileGrid map
+    -Player player
+    -WaveManager waveManager
+    -boolean isGameOver
+
+    +myGame(TileGrid room)
+    +void update()
+    +boolean isGameOver()
+}
+
+class StartScreen{
+    -TowerDefend game
+    -AssetManager assetManager
+    -Skin skin
+    -Table mainTable
+    +StartScreen(TowerDefend game, AssetManager assetManager)
+    +show():void
+    +render(float delta):void
+}
+class AboutScreen{
+    -TowerDefend game
+    -AssetManager assetManager
+    -Skin skin
+    -Table aboutTable
+    +AboutScreen(TowerDefend game, AssetManager assetManager)
+    +show():void
+    +render(float delta):void
+}
+class GameOverScreen{
+    -TowerDefend game
+    -AssetManager assetManager
+    -Skin skin
+    -Table gameoverTable
+    +GameOverScreen(TowerDefend game, AssetManager assetManager)
+    +show():void
+    +render(float delta):void
+}
+class GameStage{
+    -TowerDefend game
+    -AssetManager assetManager
+    -Skin skin
+    -Table gameTable, menuTable
+    +GameStage(TowerDefend game, AssetManager assetManager)
+    +show():void
+    +render(float delta):void
+}
+
+class Bullet {
+    -float SPEED
+    -Sprite texture
+    -boolean alive
+    -float x, y, xVelocity, yVelocity
+    -char TowerType
+    -int damage, size
+    -Enemy target
+
+    +Bullet(Sprite texture,Enemy target, float x, float y, int damage, char type)
+    +void calcDirection()
+    +void update()
+    +void draw()
+    +float getX()
+    +float getY()
+}
+
+
+
+DeckofCard "1" -- "N" myCard
+
+Player -- DeckofCard
+Player -- myTower
+Player -- WaveManager
+
+myGame "1" -- "N" Wave
+myGame -- Clock
+myGame -- TileGrid 
+
+TowerDefend -- StartScreen
+
+StartScreen -- GameStage
+StartScreen -- AboutScreen
+
+GameStage -- GameOverScreen
+GameStage -- myGame
+
 TileGrid o-- Map
 TileGrid o-- Tile
 Tile -- TileType
+
 Wave "1" *-- "N" Enemy
+WaveManager "1" *-- "N" Wave
+
 Enemy <|-- Basic
+Enemy <|-- Electro
+Enemy <|-- Fire
+Enemy <|-- Water
+Enemy <|-- Ice
+Enemy <|-- Geo
+
+myTower -- Bullet
+
+myTower <|-- myAirTower
+myTower <|-- myElectroTower
+myTower <|-- myFireTower
+myTower <|-- myGeoTower
+myTower <|-- myIceTower
+myTower <|-- myWaterTower
+
 Artist -- Enemy
 Artist -- Tile
+Artist -- myTower
+Artist -- Player
+Artist -- myCard
 @enduml
